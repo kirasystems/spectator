@@ -1,0 +1,2774 @@
+{
+  "width": 2550,
+  "height": 3300,
+  "tokens": [
+    {
+      "line": 0,
+      "word": 0,
+      "bounding_box": { "top": 309, "bottom": 342, "left": 478, "right": 650 },
+      "text_span": { "start": 1551, "end": 1558 }
+    },
+    {
+      "line": 0,
+      "word": 1,
+      "bounding_box": { "top": 309, "bottom": 342, "left": 667, "right": 708 },
+      "text_span": { "start": 1559, "end": 1561 }
+    },
+    {
+      "line": 1,
+      "word": 0,
+      "bounding_box": { "top": 363, "bottom": 396, "left": 445, "right": 478 },
+      "text_span": { "start": 1562, "end": 1563 }
+    },
+    {
+      "line": 1,
+      "word": 1,
+      "bounding_box": { "top": 363, "bottom": 396, "left": 493, "right": 598 },
+      "text_span": { "start": 1564, "end": 1567 }
+    },
+    {
+      "line": 1,
+      "word": 2,
+      "bounding_box": { "top": 362, "bottom": 396, "left": 613, "right": 739 },
+      "text_span": { "start": 1568, "end": 1572 }
+    },
+    {
+      "line": 2,
+      "word": 0,
+      "bounding_box": { "top": 420, "bottom": 450, "left": 370, "right": 389 },
+      "text_span": { "start": 1573, "end": 1575 }
+    },
+    {
+      "line": 2,
+      "word": 1,
+      "bounding_box": { "top": 420, "bottom": 450, "left": 404, "right": 431 },
+      "text_span": { "start": 1576, "end": 1578 }
+    },
+    {
+      "line": 2,
+      "word": 2,
+      "bounding_box": { "top": 427, "bottom": 450, "left": 445, "right": 466 },
+      "text_span": { "start": 1579, "end": 1580 }
+    },
+    {
+      "line": 2,
+      "word": 3,
+      "bounding_box": { "top": 420, "bottom": 450, "left": 480, "right": 594 },
+      "text_span": { "start": 1581, "end": 1587 }
+    },
+    {
+      "line": 2,
+      "word": 4,
+      "bounding_box": { "top": 419, "bottom": 450, "left": 609, "right": 645 },
+      "text_span": { "start": 1588, "end": 1590 }
+    },
+    {
+      "line": 2,
+      "word": 5,
+      "bounding_box": { "top": 420, "bottom": 450, "left": 657, "right": 725 },
+      "text_span": { "start": 1591, "end": 1596 }
+    },
+    {
+      "line": 2,
+      "word": 6,
+      "bounding_box": { "top": 427, "bottom": 450, "left": 739, "right": 807 },
+      "text_span": { "start": 1597, "end": 1600 }
+    },
+    {
+      "line": 2,
+      "word": 7,
+      "bounding_box": { "top": 445, "bottom": 450, "left": 806, "right": 812 },
+      "text_span": { "start": 1600, "end": 1601 }
+    },
+    {
+      "line": 3,
+      "word": 0,
+      "bounding_box": { "top": 470, "bottom": 500, "left": 353, "right": 455 },
+      "text_span": { "start": 1602, "end": 1607 }
+    },
+    {
+      "line": 3,
+      "word": 1,
+      "bounding_box": { "top": 470, "bottom": 500, "left": 470, "right": 679 },
+      "text_span": { "start": 1608, "end": 1618 }
+    },
+    {
+      "line": 3,
+      "word": 2,
+      "bounding_box": { "top": 495, "bottom": 500, "left": 683, "right": 689 },
+      "text_span": { "start": 1618, "end": 1619 }
+    },
+    {
+      "line": 3,
+      "word": 3,
+      "bounding_box": { "top": 470, "bottom": 500, "left": 704, "right": 837 },
+      "text_span": { "start": 1620, "end": 1628 }
+    },
+    {
+      "line": 4,
+      "word": 0,
+      "bounding_box": { "top": 519, "bottom": 550, "left": 312, "right": 395 },
+      "text_span": { "start": 1629, "end": 1633 }
+    },
+    {
+      "line": 4,
+      "word": 1,
+      "bounding_box": { "top": 527, "bottom": 550, "left": 410, "right": 431 },
+      "text_span": { "start": 1634, "end": 1635 }
+    },
+    {
+      "line": 4,
+      "word": 2,
+      "bounding_box": { "top": 520, "bottom": 550, "left": 445, "right": 568 },
+      "text_span": { "start": 1636, "end": 1642 }
+    },
+    {
+      "line": 4,
+      "word": 3,
+      "bounding_box": { "top": 520, "bottom": 550, "left": 584, "right": 672 },
+      "text_span": { "start": 1643, "end": 1647 }
+    },
+    {
+      "line": 4,
+      "word": 4,
+      "bounding_box": { "top": 545, "bottom": 550, "left": 675, "right": 681 },
+      "text_span": { "start": 1647, "end": 1648 }
+    },
+    {
+      "line": 4,
+      "word": 5,
+      "bounding_box": { "top": 520, "bottom": 550, "left": 697, "right": 784 },
+      "text_span": { "start": 1649, "end": 1653 }
+    },
+    {
+      "line": 4,
+      "word": 6,
+      "bounding_box": { "top": 527, "bottom": 550, "left": 796, "right": 872 },
+      "text_span": { "start": 1654, "end": 1657 }
+    },
+    {
+      "line": 5,
+      "word": 0,
+      "bounding_box": { "top": 570, "bottom": 600, "left": 371, "right": 453 },
+      "text_span": { "start": 1658, "end": 1663 }
+    },
+    {
+      "line": 5,
+      "word": 1,
+      "bounding_box": { "top": 569, "bottom": 600, "left": 464, "right": 532 },
+      "text_span": { "start": 1664, "end": 1669 }
+    },
+    {
+      "line": 5,
+      "word": 2,
+      "bounding_box": { "top": 570, "bottom": 600, "left": 545, "right": 670 },
+      "text_span": { "start": 1670, "end": 1677 }
+    },
+    {
+      "line": 5,
+      "word": 3,
+      "bounding_box": { "top": 570, "bottom": 600, "left": 682, "right": 815 },
+      "text_span": { "start": 1678, "end": 1685 }
+    },
+    {
+      "line": 6,
+      "word": 0,
+      "bounding_box": { "top": 620, "bottom": 650, "left": 367, "right": 425 },
+      "text_span": { "start": 1686, "end": 1689 }
+    },
+    {
+      "line": 6,
+      "word": 1,
+      "bounding_box": { "top": 620, "bottom": 650, "left": 438, "right": 496 },
+      "text_span": { "start": 1690, "end": 1694 }
+    },
+    {
+      "line": 6,
+      "word": 2,
+      "bounding_box": { "top": 619, "bottom": 650, "left": 511, "right": 663 },
+      "text_span": { "start": 1695, "end": 1703 }
+    },
+    {
+      "line": 6,
+      "word": 3,
+      "bounding_box": { "top": 620, "bottom": 650, "left": 678, "right": 805 },
+      "text_span": { "start": 1704, "end": 1710 }
+    },
+    {
+      "line": 6,
+      "word": 4,
+      "bounding_box": { "top": 645, "bottom": 650, "left": 808, "right": 814 },
+      "text_span": { "start": 1710, "end": 1711 }
+    },
+    {
+      "line": 7,
+      "word": 0,
+      "bounding_box": { "top": 720, "bottom": 750, "left": 374, "right": 492 },
+      "text_span": { "start": 1712, "end": 1718 }
+    },
+    {
+      "line": 7,
+      "word": 1,
+      "bounding_box": { "top": 720, "bottom": 750, "left": 505, "right": 563 },
+      "text_span": { "start": 1719, "end": 1722 }
+    },
+    {
+      "line": 7,
+      "word": 2,
+      "bounding_box": { "top": 720, "bottom": 750, "left": 577, "right": 680 },
+      "text_span": { "start": 1723, "end": 1729 }
+    },
+    {
+      "line": 7,
+      "word": 3,
+      "bounding_box": { "top": 745, "bottom": 750, "left": 683, "right": 689 },
+      "text_span": { "start": 1729, "end": 1730 }
+    },
+    {
+      "line": 7,
+      "word": 4,
+      "bounding_box": { "top": 720, "bottom": 750, "left": 707, "right": 809 },
+      "text_span": { "start": 1731, "end": 1736 }
+    },
+    {
+      "line": 8,
+      "word": 0,
+      "bounding_box": { "top": 770, "bottom": 800, "left": 313, "right": 410 },
+      "text_span": { "start": 1737, "end": 1742 }
+    },
+    {
+      "line": 8,
+      "word": 1,
+      "bounding_box": { "top": 770, "bottom": 800, "left": 424, "right": 594 },
+      "text_span": { "start": 1743, "end": 1750 }
+    },
+    {
+      "line": 8,
+      "word": 2,
+      "bounding_box": { "top": 772, "bottom": 800, "left": 608, "right": 644 },
+      "text_span": { "start": 1751, "end": 1753 }
+    },
+    {
+      "line": 8,
+      "word": 3,
+      "bounding_box": { "top": 770, "bottom": 800, "left": 658, "right": 742 },
+      "text_span": { "start": 1754, "end": 1759 }
+    },
+    {
+      "line": 8,
+      "word": 4,
+      "bounding_box": { "top": 772, "bottom": 800, "left": 757, "right": 869 },
+      "text_span": { "start": 1760, "end": 1766 }
+    },
+    {
+      "line": 9,
+      "word": 0,
+      "bounding_box": { "top": 820, "bottom": 850, "left": 398, "right": 495 },
+      "text_span": { "start": 1767, "end": 1772 }
+    },
+    {
+      "line": 9,
+      "word": 1,
+      "bounding_box": { "top": 822, "bottom": 850, "left": 508, "right": 544 },
+      "text_span": { "start": 1773, "end": 1775 }
+    },
+    {
+      "line": 9,
+      "word": 2,
+      "bounding_box": { "top": 820, "bottom": 850, "left": 556, "right": 615 },
+      "text_span": { "start": 1776, "end": 1779 }
+    },
+    {
+      "line": 9,
+      "word": 3,
+      "bounding_box": { "top": 820, "bottom": 850, "left": 630, "right": 757 },
+      "text_span": { "start": 1780, "end": 1786 }
+    },
+    {
+      "line": 9,
+      "word": 4,
+      "bounding_box": { "top": 820, "bottom": 850, "left": 761, "right": 789 },
+      "text_span": { "start": 1786, "end": 1788 }
+    },
+    {
+      "line": 10,
+      "word": 0,
+      "bounding_box": { "top": 870, "bottom": 900, "left": 327, "right": 473 },
+      "text_span": { "start": 1789, "end": 1797 }
+    },
+    {
+      "line": 10,
+      "word": 1,
+      "bounding_box": { "top": 877, "bottom": 900, "left": 485, "right": 631 },
+      "text_span": { "start": 1798, "end": 1804 }
+    },
+    {
+      "line": 10,
+      "word": 2,
+      "bounding_box": { "top": 895, "bottom": 900, "left": 636, "right": 642 },
+      "text_span": { "start": 1804, "end": 1805 }
+    },
+    {
+      "line": 10,
+      "word": 3,
+      "bounding_box": { "top": 870, "bottom": 900, "left": 656, "right": 714 },
+      "text_span": { "start": 1806, "end": 1809 }
+    },
+    {
+      "line": 10,
+      "word": 4,
+      "bounding_box": { "top": 870, "bottom": 900, "left": 729, "right": 855 },
+      "text_span": { "start": 1810, "end": 1815 }
+    },
+    {
+      "line": 11,
+      "word": 0,
+      "bounding_box": { "top": 919, "bottom": 950, "left": 363, "right": 465 },
+      "text_span": { "start": 1816, "end": 1820 }
+    },
+    {
+      "line": 11,
+      "word": 1,
+      "bounding_box": { "top": 945, "bottom": 950, "left": 468, "right": 474 },
+      "text_span": { "start": 1820, "end": 1821 }
+    },
+    {
+      "line": 11,
+      "word": 2,
+      "bounding_box": { "top": 927, "bottom": 950, "left": 489, "right": 532 },
+      "text_span": { "start": 1822, "end": 1824 }
+    },
+    {
+      "line": 11,
+      "word": 3,
+      "bounding_box": { "top": 920, "bottom": 950, "left": 546, "right": 699 },
+      "text_span": { "start": 1825, "end": 1832 }
+    },
+    {
+      "line": 11,
+      "word": 4,
+      "bounding_box": { "top": 927, "bottom": 950, "left": 714, "right": 825 },
+      "text_span": { "start": 1833, "end": 1838 }
+    },
+    {
+      "line": 12,
+      "word": 0,
+      "bounding_box": { "top": 970, "bottom": 1000, "left": 322, "right": 444 },
+      "text_span": { "start": 1839, "end": 1846 }
+    },
+    {
+      "line": 12,
+      "word": 1,
+      "bounding_box": { "top": 970, "bottom": 1000, "left": 458, "right": 533 },
+      "text_span": { "start": 1847, "end": 1851 }
+    },
+    {
+      "line": 12,
+      "word": 2,
+      "bounding_box": { "top": 970, "bottom": 1000, "left": 548, "right": 684 },
+      "text_span": { "start": 1852, "end": 1858 }
+    },
+    {
+      "line": 12,
+      "word": 3,
+      "bounding_box": { "top": 977, "bottom": 1000, "left": 700, "right": 815 },
+      "text_span": { "start": 1859, "end": 1864 }
+    },
+    {
+      "line": 12,
+      "word": 4,
+      "bounding_box": { "top": 972, "bottom": 1000, "left": 826, "right": 862 },
+      "text_span": { "start": 1865, "end": 1867 }
+    },
+    {
+      "line": 13,
+      "word": 0,
+      "bounding_box": {
+        "top": 1020,
+        "bottom": 1050,
+        "left": 368,
+        "right": 506
+      },
+      "text_span": { "start": 1868, "end": 1875 }
+    },
+    {
+      "line": 13,
+      "word": 1,
+      "bounding_box": {
+        "top": 1027,
+        "bottom": 1050,
+        "left": 518,
+        "right": 561
+      },
+      "text_span": { "start": 1876, "end": 1878 }
+    },
+    {
+      "line": 13,
+      "word": 2,
+      "bounding_box": {
+        "top": 1020,
+        "bottom": 1050,
+        "left": 575,
+        "right": 677
+      },
+      "text_span": { "start": 1879, "end": 1885 }
+    },
+    {
+      "line": 13,
+      "word": 3,
+      "bounding_box": {
+        "top": 1020,
+        "bottom": 1050,
+        "left": 691,
+        "right": 803
+      },
+      "text_span": { "start": 1886, "end": 1892 }
+    },
+    {
+      "line": 13,
+      "word": 4,
+      "bounding_box": {
+        "top": 1045,
+        "bottom": 1050,
+        "left": 807,
+        "right": 813
+      },
+      "text_span": { "start": 1892, "end": 1893 }
+    },
+    {
+      "line": 14,
+      "word": 0,
+      "bounding_box": {
+        "top": 1120,
+        "bottom": 1150,
+        "left": 365,
+        "right": 515
+      },
+      "text_span": { "start": 1894, "end": 1901 }
+    },
+    {
+      "line": 14,
+      "word": 1,
+      "bounding_box": {
+        "top": 1120,
+        "bottom": 1150,
+        "left": 531,
+        "right": 575
+      },
+      "text_span": { "start": 1902, "end": 1904 }
+    },
+    {
+      "line": 14,
+      "word": 2,
+      "bounding_box": {
+        "top": 1120,
+        "bottom": 1150,
+        "left": 586,
+        "right": 645
+      },
+      "text_span": { "start": 1905, "end": 1908 }
+    },
+    {
+      "line": 14,
+      "word": 3,
+      "bounding_box": {
+        "top": 1120,
+        "bottom": 1150,
+        "left": 660,
+        "right": 787
+      },
+      "text_span": { "start": 1909, "end": 1915 }
+    },
+    {
+      "line": 14,
+      "word": 4,
+      "bounding_box": {
+        "top": 1120,
+        "bottom": 1150,
+        "left": 791,
+        "right": 819
+      },
+      "text_span": { "start": 1915, "end": 1917 }
+    },
+    {
+      "line": 15,
+      "word": 0,
+      "bounding_box": {
+        "top": 1170,
+        "bottom": 1200,
+        "left": 368,
+        "right": 499
+      },
+      "text_span": { "start": 1918, "end": 1926 }
+    },
+    {
+      "line": 15,
+      "word": 1,
+      "bounding_box": {
+        "top": 1172,
+        "bottom": 1200,
+        "left": 512,
+        "right": 636
+      },
+      "text_span": { "start": 1927, "end": 1933 }
+    },
+    {
+      "line": 15,
+      "word": 2,
+      "bounding_box": {
+        "top": 1195,
+        "bottom": 1200,
+        "left": 640,
+        "right": 646
+      },
+      "text_span": { "start": 1933, "end": 1934 }
+    },
+    {
+      "line": 15,
+      "word": 3,
+      "bounding_box": {
+        "top": 1170,
+        "bottom": 1200,
+        "left": 663,
+        "right": 819
+      },
+      "text_span": { "start": 1935, "end": 1943 }
+    },
+    {
+      "line": 16,
+      "word": 0,
+      "bounding_box": {
+        "top": 1220,
+        "bottom": 1250,
+        "left": 336,
+        "right": 410
+      },
+      "text_span": { "start": 1944, "end": 1948 }
+    },
+    {
+      "line": 16,
+      "word": 1,
+      "bounding_box": {
+        "top": 1227,
+        "bottom": 1250,
+        "left": 424,
+        "right": 523
+      },
+      "text_span": { "start": 1949, "end": 1954 }
+    },
+    {
+      "line": 16,
+      "word": 2,
+      "bounding_box": {
+        "top": 1220,
+        "bottom": 1250,
+        "left": 538,
+        "right": 640
+      },
+      "text_span": { "start": 1955, "end": 1959 }
+    },
+    {
+      "line": 16,
+      "word": 3,
+      "bounding_box": {
+        "top": 1220,
+        "bottom": 1250,
+        "left": 653,
+        "right": 781
+      },
+      "text_span": { "start": 1960, "end": 1966 }
+    },
+    {
+      "line": 16,
+      "word": 4,
+      "bounding_box": {
+        "top": 1220,
+        "bottom": 1250,
+        "left": 797,
+        "right": 854
+      },
+      "text_span": { "start": 1967, "end": 1970 }
+    },
+    {
+      "line": 17,
+      "word": 0,
+      "bounding_box": {
+        "top": 1270,
+        "bottom": 1300,
+        "left": 359,
+        "right": 506
+      },
+      "text_span": { "start": 1971, "end": 1979 }
+    },
+    {
+      "line": 17,
+      "word": 1,
+      "bounding_box": {
+        "top": 1295,
+        "bottom": 1300,
+        "left": 509,
+        "right": 515
+      },
+      "text_span": { "start": 1979, "end": 1980 }
+    },
+    {
+      "line": 17,
+      "word": 2,
+      "bounding_box": {
+        "top": 1270,
+        "bottom": 1300,
+        "left": 531,
+        "right": 710
+      },
+      "text_span": { "start": 1981, "end": 1990 }
+    },
+    {
+      "line": 17,
+      "word": 3,
+      "bounding_box": {
+        "top": 1269,
+        "bottom": 1300,
+        "left": 725,
+        "right": 761
+      },
+      "text_span": { "start": 1991, "end": 1993 }
+    },
+    {
+      "line": 17,
+      "word": 4,
+      "bounding_box": {
+        "top": 1270,
+        "bottom": 1300,
+        "left": 772,
+        "right": 830
+      },
+      "text_span": { "start": 1994, "end": 1997 }
+    },
+    {
+      "line": 18,
+      "word": 0,
+      "bounding_box": {
+        "top": 1320,
+        "bottom": 1350,
+        "left": 351,
+        "right": 460
+      },
+      "text_span": { "start": 1998, "end": 2004 }
+    },
+    {
+      "line": 18,
+      "word": 1,
+      "bounding_box": {
+        "top": 1320,
+        "bottom": 1350,
+        "left": 476,
+        "right": 574
+      },
+      "text_span": { "start": 2005, "end": 2010 }
+    },
+    {
+      "line": 18,
+      "word": 2,
+      "bounding_box": {
+        "top": 1320,
+        "bottom": 1350,
+        "left": 586,
+        "right": 657
+      },
+      "text_span": { "start": 2011, "end": 2015 }
+    },
+    {
+      "line": 18,
+      "word": 3,
+      "bounding_box": {
+        "top": 1327,
+        "bottom": 1350,
+        "left": 671,
+        "right": 735
+      },
+      "text_span": { "start": 2016, "end": 2019 }
+    },
+    {
+      "line": 18,
+      "word": 4,
+      "bounding_box": {
+        "top": 1327,
+        "bottom": 1350,
+        "left": 750,
+        "right": 835
+      },
+      "text_span": { "start": 2020, "end": 2024 }
+    },
+    {
+      "line": 19,
+      "word": 0,
+      "bounding_box": {
+        "top": 1370,
+        "bottom": 1400,
+        "left": 385,
+        "right": 443
+      },
+      "text_span": { "start": 2025, "end": 2028 }
+    },
+    {
+      "line": 19,
+      "word": 1,
+      "bounding_box": {
+        "top": 1370,
+        "bottom": 1400,
+        "left": 456,
+        "right": 581
+      },
+      "text_span": { "start": 2029, "end": 2035 }
+    },
+    {
+      "line": 19,
+      "word": 2,
+      "bounding_box": {
+        "top": 1370,
+        "bottom": 1400,
+        "left": 594,
+        "right": 661
+      },
+      "text_span": { "start": 2036, "end": 2039 }
+    },
+    {
+      "line": 19,
+      "word": 3,
+      "bounding_box": {
+        "top": 1372,
+        "bottom": 1400,
+        "left": 677,
+        "right": 804
+      },
+      "text_span": { "start": 2040, "end": 2047 }
+    },
+    {
+      "line": 20,
+      "word": 0,
+      "bounding_box": {
+        "top": 1419,
+        "bottom": 1450,
+        "left": 362,
+        "right": 514
+      },
+      "text_span": { "start": 2048, "end": 2055 }
+    },
+    {
+      "line": 20,
+      "word": 1,
+      "bounding_box": {
+        "top": 1422,
+        "bottom": 1450,
+        "left": 528,
+        "right": 565
+      },
+      "text_span": { "start": 2056, "end": 2058 }
+    },
+    {
+      "line": 20,
+      "word": 2,
+      "bounding_box": {
+        "top": 1420,
+        "bottom": 1450,
+        "left": 577,
+        "right": 635
+      },
+      "text_span": { "start": 2059, "end": 2062 }
+    },
+    {
+      "line": 20,
+      "word": 3,
+      "bounding_box": {
+        "top": 1420,
+        "bottom": 1450,
+        "left": 648,
+        "right": 768
+      },
+      "text_span": { "start": 2063, "end": 2069 }
+    },
+    {
+      "line": 21,
+      "word": 0,
+      "bounding_box": {
+        "top": 312,
+        "bottom": 342,
+        "left": 1177,
+        "right": 1334
+      },
+      "text_span": { "start": 2070, "end": 2077 }
+    },
+    {
+      "line": 21,
+      "word": 1,
+      "bounding_box": {
+        "top": 312,
+        "bottom": 342,
+        "left": 1346,
+        "right": 1374
+      },
+      "text_span": { "start": 2078, "end": 2079 }
+    },
+    {
+      "line": 22,
+      "word": 0,
+      "bounding_box": { "top": 362, "bottom": 392, "left": 987, "right": 1070 },
+      "text_span": { "start": 2080, "end": 2083 }
+    },
+    {
+      "line": 22,
+      "word": 1,
+      "bounding_box": {
+        "top": 362,
+        "bottom": 392,
+        "left": 1084,
+        "right": 1243
+      },
+      "text_span": { "start": 2084, "end": 2090 }
+    },
+    {
+      "line": 22,
+      "word": 2,
+      "bounding_box": {
+        "top": 361,
+        "bottom": 392,
+        "left": 1257,
+        "right": 1435
+      },
+      "text_span": { "start": 2091, "end": 2098 }
+    },
+    {
+      "line": 22,
+      "word": 3,
+      "bounding_box": {
+        "top": 361,
+        "bottom": 392,
+        "left": 1449,
+        "right": 1566
+      },
+      "text_span": { "start": 2099, "end": 2103 }
+    },
+    {
+      "line": 23,
+      "word": 0,
+      "bounding_box": {
+        "top": 412,
+        "bottom": 442,
+        "left": 1070,
+        "right": 1089
+      },
+      "text_span": { "start": 2104, "end": 2106 }
+    },
+    {
+      "line": 23,
+      "word": 1,
+      "bounding_box": {
+        "top": 412,
+        "bottom": 442,
+        "left": 1104,
+        "right": 1131
+      },
+      "text_span": { "start": 2107, "end": 2109 }
+    },
+    {
+      "line": 23,
+      "word": 2,
+      "bounding_box": {
+        "top": 419,
+        "bottom": 442,
+        "left": 1145,
+        "right": 1166
+      },
+      "text_span": { "start": 2110, "end": 2111 }
+    },
+    {
+      "line": 23,
+      "word": 3,
+      "bounding_box": {
+        "top": 412,
+        "bottom": 442,
+        "left": 1179,
+        "right": 1261
+      },
+      "text_span": { "start": 2112, "end": 2116 }
+    },
+    {
+      "line": 23,
+      "word": 4,
+      "bounding_box": {
+        "top": 412,
+        "bottom": 442,
+        "left": 1272,
+        "right": 1352
+      },
+      "text_span": { "start": 2117, "end": 2121 }
+    },
+    {
+      "line": 23,
+      "word": 5,
+      "bounding_box": {
+        "top": 411,
+        "bottom": 442,
+        "left": 1364,
+        "right": 1414
+      },
+      "text_span": { "start": 2122, "end": 2125 }
+    },
+    {
+      "line": 23,
+      "word": 6,
+      "bounding_box": {
+        "top": 412,
+        "bottom": 442,
+        "left": 1426,
+        "right": 1484
+      },
+      "text_span": { "start": 2126, "end": 2129 }
+    },
+    {
+      "line": 24,
+      "word": 0,
+      "bounding_box": { "top": 462, "bottom": 492, "left": 999, "right": 1166 },
+      "text_span": { "start": 2130, "end": 2139 }
+    },
+    {
+      "line": 24,
+      "word": 1,
+      "bounding_box": {
+        "top": 487,
+        "bottom": 492,
+        "left": 1172,
+        "right": 1178
+      },
+      "text_span": { "start": 2139, "end": 2140 }
+    },
+    {
+      "line": 24,
+      "word": 2,
+      "bounding_box": {
+        "top": 462,
+        "bottom": 492,
+        "left": 1191,
+        "right": 1356
+      },
+      "text_span": { "start": 2141, "end": 2149 }
+    },
+    {
+      "line": 24,
+      "word": 3,
+      "bounding_box": {
+        "top": 462,
+        "bottom": 492,
+        "left": 1370,
+        "right": 1428
+      },
+      "text_span": { "start": 2150, "end": 2153 }
+    },
+    {
+      "line": 24,
+      "word": 4,
+      "bounding_box": {
+        "top": 462,
+        "bottom": 492,
+        "left": 1443,
+        "right": 1549
+      },
+      "text_span": { "start": 2154, "end": 2159 }
+    },
+    {
+      "line": 25,
+      "word": 0,
+      "bounding_box": {
+        "top": 511,
+        "bottom": 542,
+        "left": 1043,
+        "right": 1118
+      },
+      "text_span": { "start": 2160, "end": 2164 }
+    },
+    {
+      "line": 25,
+      "word": 1,
+      "bounding_box": {
+        "top": 512,
+        "bottom": 542,
+        "left": 1132,
+        "right": 1195
+      },
+      "text_span": { "start": 2165, "end": 2168 }
+    },
+    {
+      "line": 25,
+      "word": 2,
+      "bounding_box": {
+        "top": 512,
+        "bottom": 542,
+        "left": 1210,
+        "right": 1298
+      },
+      "text_span": { "start": 2169, "end": 2173 }
+    },
+    {
+      "line": 25,
+      "word": 3,
+      "bounding_box": {
+        "top": 512,
+        "bottom": 542,
+        "left": 1313,
+        "right": 1495
+      },
+      "text_span": { "start": 2174, "end": 2183 }
+    },
+    {
+      "line": 25,
+      "word": 4,
+      "bounding_box": {
+        "top": 537,
+        "bottom": 542,
+        "left": 1501,
+        "right": 1507
+      },
+      "text_span": { "start": 2183, "end": 2184 }
+    },
+    {
+      "line": 26,
+      "word": 0,
+      "bounding_box": { "top": 562, "bottom": 592, "left": 990, "right": 1133 },
+      "text_span": { "start": 2185, "end": 2193 }
+    },
+    {
+      "line": 26,
+      "word": 1,
+      "bounding_box": {
+        "top": 564,
+        "bottom": 592,
+        "left": 1147,
+        "right": 1266
+      },
+      "text_span": { "start": 2194, "end": 2200 }
+    },
+    {
+      "line": 26,
+      "word": 2,
+      "bounding_box": {
+        "top": 562,
+        "bottom": 592,
+        "left": 1280,
+        "right": 1367
+      },
+      "text_span": { "start": 2201, "end": 2205 }
+    },
+    {
+      "line": 26,
+      "word": 3,
+      "bounding_box": {
+        "top": 562,
+        "bottom": 592,
+        "left": 1380,
+        "right": 1491
+      },
+      "text_span": { "start": 2206, "end": 2212 }
+    },
+    {
+      "line": 26,
+      "word": 4,
+      "bounding_box": {
+        "top": 562,
+        "bottom": 592,
+        "left": 1505,
+        "right": 1563
+      },
+      "text_span": { "start": 2213, "end": 2216 }
+    },
+    {
+      "line": 27,
+      "word": 0,
+      "bounding_box": { "top": 612, "bottom": 642, "left": 995, "right": 1097 },
+      "text_span": { "start": 2217, "end": 2222 }
+    },
+    {
+      "line": 27,
+      "word": 1,
+      "bounding_box": {
+        "top": 611,
+        "bottom": 642,
+        "left": 1110,
+        "right": 1225
+      },
+      "text_span": { "start": 2223, "end": 2229 }
+    },
+    {
+      "line": 27,
+      "word": 2,
+      "bounding_box": {
+        "top": 611,
+        "bottom": 642,
+        "left": 1237,
+        "right": 1319
+      },
+      "text_span": { "start": 2230, "end": 2234 }
+    },
+    {
+      "line": 27,
+      "word": 3,
+      "bounding_box": {
+        "top": 612,
+        "bottom": 642,
+        "left": 1334,
+        "right": 1415
+      },
+      "text_span": { "start": 2235, "end": 2240 }
+    },
+    {
+      "line": 27,
+      "word": 4,
+      "bounding_box": {
+        "top": 612,
+        "bottom": 642,
+        "left": 1429,
+        "right": 1552
+      },
+      "text_span": { "start": 2241, "end": 2247 }
+    },
+    {
+      "line": 28,
+      "word": 0,
+      "bounding_box": { "top": 662, "bottom": 692, "left": 989, "right": 1077 },
+      "text_span": { "start": 2248, "end": 2252 }
+    },
+    {
+      "line": 28,
+      "word": 1,
+      "bounding_box": {
+        "top": 662,
+        "bottom": 692,
+        "left": 1090,
+        "right": 1157
+      },
+      "text_span": { "start": 2253, "end": 2256 }
+    },
+    {
+      "line": 28,
+      "word": 2,
+      "bounding_box": {
+        "top": 662,
+        "bottom": 692,
+        "left": 1173,
+        "right": 1321
+      },
+      "text_span": { "start": 2257, "end": 2264 }
+    },
+    {
+      "line": 28,
+      "word": 3,
+      "bounding_box": {
+        "top": 662,
+        "bottom": 692,
+        "left": 1336,
+        "right": 1427
+      },
+      "text_span": { "start": 2265, "end": 2269 }
+    },
+    {
+      "line": 28,
+      "word": 4,
+      "bounding_box": {
+        "top": 669,
+        "bottom": 692,
+        "left": 1442,
+        "right": 1564
+      },
+      "text_span": { "start": 2270, "end": 2276 }
+    },
+    {
+      "line": 29,
+      "word": 0,
+      "bounding_box": {
+        "top": 712,
+        "bottom": 742,
+        "left": 1175,
+        "right": 1233
+      },
+      "text_span": { "start": 2277, "end": 2280 }
+    },
+    {
+      "line": 29,
+      "word": 1,
+      "bounding_box": {
+        "top": 712,
+        "bottom": 742,
+        "left": 1246,
+        "right": 1366
+      },
+      "text_span": { "start": 2281, "end": 2287 }
+    },
+    {
+      "line": 29,
+      "word": 2,
+      "bounding_box": {
+        "top": 737,
+        "bottom": 742,
+        "left": 1365,
+        "right": 1371
+      },
+      "text_span": { "start": 2287, "end": 2288 }
+    },
+    {
+      "line": 30,
+      "word": 0,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 1007,
+        "right": 1152
+      },
+      "text_span": { "start": 2289, "end": 2296 }
+    },
+    {
+      "line": 30,
+      "word": 1,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 1165,
+        "right": 1224
+      },
+      "text_span": { "start": 2297, "end": 2300 }
+    },
+    {
+      "line": 30,
+      "word": 2,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 1237,
+        "right": 1387
+      },
+      "text_span": { "start": 2301, "end": 2308 }
+    },
+    {
+      "line": 30,
+      "word": 3,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 1405,
+        "right": 1548
+      },
+      "text_span": { "start": 2309, "end": 2317 }
+    },
+    {
+      "line": 31,
+      "word": 0,
+      "bounding_box": {
+        "top": 861,
+        "bottom": 892,
+        "left": 1009,
+        "right": 1163
+      },
+      "text_span": { "start": 2318, "end": 2327 }
+    },
+    {
+      "line": 31,
+      "word": 1,
+      "bounding_box": {
+        "top": 887,
+        "bottom": 892,
+        "left": 1167,
+        "right": 1173
+      },
+      "text_span": { "start": 2327, "end": 2328 }
+    },
+    {
+      "line": 31,
+      "word": 2,
+      "bounding_box": {
+        "top": 869,
+        "bottom": 892,
+        "left": 1188,
+        "right": 1209
+      },
+      "text_span": { "start": 2329, "end": 2330 }
+    },
+    {
+      "line": 31,
+      "word": 3,
+      "bounding_box": {
+        "top": 869,
+        "bottom": 892,
+        "left": 1222,
+        "right": 1329
+      },
+      "text_span": { "start": 2331, "end": 2336 }
+    },
+    {
+      "line": 31,
+      "word": 4,
+      "bounding_box": {
+        "top": 861,
+        "bottom": 892,
+        "left": 1343,
+        "right": 1379
+      },
+      "text_span": { "start": 2337, "end": 2339 }
+    },
+    {
+      "line": 31,
+      "word": 5,
+      "bounding_box": {
+        "top": 861,
+        "bottom": 892,
+        "left": 1390,
+        "right": 1541
+      },
+      "text_span": { "start": 2340, "end": 2347 }
+    },
+    {
+      "line": 32,
+      "word": 0,
+      "bounding_box": { "top": 911, "bottom": 942, "left": 992, "right": 1130 },
+      "text_span": { "start": 2348, "end": 2356 }
+    },
+    {
+      "line": 32,
+      "word": 1,
+      "bounding_box": {
+        "top": 912,
+        "bottom": 942,
+        "left": 1144,
+        "right": 1196
+      },
+      "text_span": { "start": 2357, "end": 2360 }
+    },
+    {
+      "line": 32,
+      "word": 2,
+      "bounding_box": {
+        "top": 912,
+        "bottom": 942,
+        "left": 1212,
+        "right": 1256
+      },
+      "text_span": { "start": 2361, "end": 2363 }
+    },
+    {
+      "line": 32,
+      "word": 3,
+      "bounding_box": {
+        "top": 912,
+        "bottom": 942,
+        "left": 1270,
+        "right": 1357
+      },
+      "text_span": { "start": 2364, "end": 2368 }
+    },
+    {
+      "line": 32,
+      "word": 4,
+      "bounding_box": {
+        "top": 911,
+        "bottom": 942,
+        "left": 1370,
+        "right": 1560
+      },
+      "text_span": { "start": 2369, "end": 2378 }
+    },
+    {
+      "line": 33,
+      "word": 0,
+      "bounding_box": {
+        "top": 962,
+        "bottom": 992,
+        "left": 1006,
+        "right": 1070
+      },
+      "text_span": { "start": 2379, "end": 2382 }
+    },
+    {
+      "line": 33,
+      "word": 1,
+      "bounding_box": {
+        "top": 962,
+        "bottom": 992,
+        "left": 1083,
+        "right": 1292
+      },
+      "text_span": { "start": 2383, "end": 2394 }
+    },
+    {
+      "line": 33,
+      "word": 2,
+      "bounding_box": {
+        "top": 969,
+        "bottom": 992,
+        "left": 1308,
+        "right": 1329
+      },
+      "text_span": { "start": 2395, "end": 2396 }
+    },
+    {
+      "line": 33,
+      "word": 3,
+      "bounding_box": {
+        "top": 969,
+        "bottom": 992,
+        "left": 1343,
+        "right": 1417
+      },
+      "text_span": { "start": 2397, "end": 2400 }
+    },
+    {
+      "line": 33,
+      "word": 4,
+      "bounding_box": {
+        "top": 964,
+        "bottom": 992,
+        "left": 1430,
+        "right": 1542
+      },
+      "text_span": { "start": 2401, "end": 2407 }
+    },
+    {
+      "line": 34,
+      "word": 0,
+      "bounding_box": {
+        "top": 1012,
+        "bottom": 1042,
+        "left": 1006,
+        "right": 1094
+      },
+      "text_span": { "start": 2408, "end": 2412 }
+    },
+    {
+      "line": 34,
+      "word": 1,
+      "bounding_box": {
+        "top": 1019,
+        "bottom": 1042,
+        "left": 1107,
+        "right": 1151
+      },
+      "text_span": { "start": 2413, "end": 2415 }
+    },
+    {
+      "line": 34,
+      "word": 2,
+      "bounding_box": {
+        "top": 1012,
+        "bottom": 1042,
+        "left": 1165,
+        "right": 1223
+      },
+      "text_span": { "start": 2416, "end": 2419 }
+    },
+    {
+      "line": 34,
+      "word": 3,
+      "bounding_box": {
+        "top": 1014,
+        "bottom": 1042,
+        "left": 1237,
+        "right": 1365
+      },
+      "text_span": { "start": 2420, "end": 2426 }
+    },
+    {
+      "line": 34,
+      "word": 4,
+      "bounding_box": {
+        "top": 1012,
+        "bottom": 1042,
+        "left": 1379,
+        "right": 1431
+      },
+      "text_span": { "start": 2427, "end": 2430 }
+    },
+    {
+      "line": 34,
+      "word": 5,
+      "bounding_box": {
+        "top": 1012,
+        "bottom": 1042,
+        "left": 1443,
+        "right": 1543
+      },
+      "text_span": { "start": 2431, "end": 2436 }
+    },
+    {
+      "line": 35,
+      "word": 0,
+      "bounding_box": {
+        "top": 1061,
+        "bottom": 1092,
+        "left": 1201,
+        "right": 1237
+      },
+      "text_span": { "start": 2437, "end": 2439 }
+    },
+    {
+      "line": 35,
+      "word": 1,
+      "bounding_box": {
+        "top": 1062,
+        "bottom": 1092,
+        "left": 1251,
+        "right": 1336
+      },
+      "text_span": { "start": 2440, "end": 2444 }
+    },
+    {
+      "line": 35,
+      "word": 2,
+      "bounding_box": {
+        "top": 1087,
+        "bottom": 1092,
+        "left": 1341,
+        "right": 1347
+      },
+      "text_span": { "start": 2444, "end": 2445 }
+    },
+    {
+      "line": 36,
+      "word": 0,
+      "bounding_box": {
+        "top": 1162,
+        "bottom": 1192,
+        "left": 1042,
+        "right": 1111
+      },
+      "text_span": { "start": 2446, "end": 2449 }
+    },
+    {
+      "line": 36,
+      "word": 1,
+      "bounding_box": {
+        "top": 1162,
+        "bottom": 1192,
+        "left": 1124,
+        "right": 1182
+      },
+      "text_span": { "start": 2450, "end": 2454 }
+    },
+    {
+      "line": 36,
+      "word": 2,
+      "bounding_box": {
+        "top": 1162,
+        "bottom": 1192,
+        "left": 1198,
+        "right": 1264
+      },
+      "text_span": { "start": 2455, "end": 2459 }
+    },
+    {
+      "line": 36,
+      "word": 3,
+      "bounding_box": {
+        "top": 1162,
+        "bottom": 1192,
+        "left": 1282,
+        "right": 1378
+      },
+      "text_span": { "start": 2460, "end": 2465 }
+    },
+    {
+      "line": 36,
+      "word": 4,
+      "bounding_box": {
+        "top": 1162,
+        "bottom": 1192,
+        "left": 1392,
+        "right": 1499
+      },
+      "text_span": { "start": 2466, "end": 2471 }
+    },
+    {
+      "line": 36,
+      "word": 5,
+      "bounding_box": {
+        "top": 1187,
+        "bottom": 1192,
+        "left": 1498,
+        "right": 1504
+      },
+      "text_span": { "start": 2471, "end": 2472 }
+    },
+    {
+      "line": 37,
+      "word": 0,
+      "bounding_box": {
+        "top": 1212,
+        "bottom": 1242,
+        "left": 1009,
+        "right": 1186
+      },
+      "text_span": { "start": 2473, "end": 2481 }
+    },
+    {
+      "line": 37,
+      "word": 1,
+      "bounding_box": {
+        "top": 1212,
+        "bottom": 1242,
+        "left": 1200,
+        "right": 1275
+      },
+      "text_span": { "start": 2482, "end": 2486 }
+    },
+    {
+      "line": 37,
+      "word": 2,
+      "bounding_box": {
+        "top": 1211,
+        "bottom": 1242,
+        "left": 1289,
+        "right": 1413
+      },
+      "text_span": { "start": 2487, "end": 2494 }
+    },
+    {
+      "line": 37,
+      "word": 3,
+      "bounding_box": {
+        "top": 1219,
+        "bottom": 1242,
+        "left": 1427,
+        "right": 1540
+      },
+      "text_span": { "start": 2495, "end": 2500 }
+    },
+    {
+      "line": 38,
+      "word": 0,
+      "bounding_box": {
+        "top": 1261,
+        "bottom": 1292,
+        "left": 1030,
+        "right": 1220
+      },
+      "text_span": { "start": 2501, "end": 2510 }
+    },
+    {
+      "line": 38,
+      "word": 1,
+      "bounding_box": {
+        "top": 1287,
+        "bottom": 1292,
+        "left": 1219,
+        "right": 1225
+      },
+      "text_span": { "start": 2510, "end": 2511 }
+    },
+    {
+      "line": 38,
+      "word": 2,
+      "bounding_box": {
+        "top": 1262,
+        "bottom": 1292,
+        "left": 1241,
+        "right": 1305
+      },
+      "text_span": { "start": 2512, "end": 2515 }
+    },
+    {
+      "line": 38,
+      "word": 3,
+      "bounding_box": {
+        "top": 1262,
+        "bottom": 1292,
+        "left": 1318,
+        "right": 1522
+      },
+      "text_span": { "start": 2516, "end": 2526 }
+    },
+    {
+      "line": 39,
+      "word": 0,
+      "bounding_box": {
+        "top": 1312,
+        "bottom": 1342,
+        "left": 1012,
+        "right": 1207
+      },
+      "text_span": { "start": 2527, "end": 2536 }
+    },
+    {
+      "line": 39,
+      "word": 1,
+      "bounding_box": {
+        "top": 1311,
+        "bottom": 1342,
+        "left": 1220,
+        "right": 1256
+      },
+      "text_span": { "start": 2537, "end": 2539 }
+    },
+    {
+      "line": 39,
+      "word": 2,
+      "bounding_box": {
+        "top": 1314,
+        "bottom": 1342,
+        "left": 1269,
+        "right": 1397
+      },
+      "text_span": { "start": 2540, "end": 2546 }
+    },
+    {
+      "line": 39,
+      "word": 3,
+      "bounding_box": {
+        "top": 1312,
+        "bottom": 1342,
+        "left": 1411,
+        "right": 1538
+      },
+      "text_span": { "start": 2547, "end": 2553 }
+    },
+    {
+      "line": 40,
+      "word": 0,
+      "bounding_box": {
+        "top": 1362,
+        "bottom": 1392,
+        "left": 1244,
+        "right": 1310
+      },
+      "text_span": { "start": 2554, "end": 2558 }
+    },
+    {
+      "line": 41,
+      "word": 0,
+      "bounding_box": {
+        "top": 1412,
+        "bottom": 1442,
+        "left": 1029,
+        "right": 1087
+      },
+      "text_span": { "start": 2559, "end": 2562 }
+    },
+    {
+      "line": 41,
+      "word": 1,
+      "bounding_box": {
+        "top": 1411,
+        "bottom": 1442,
+        "left": 1099,
+        "right": 1148
+      },
+      "text_span": { "start": 2563, "end": 2566 }
+    },
+    {
+      "line": 41,
+      "word": 2,
+      "bounding_box": {
+        "top": 1412,
+        "bottom": 1442,
+        "left": 1162,
+        "right": 1305
+      },
+      "text_span": { "start": 2567, "end": 2574 }
+    },
+    {
+      "line": 41,
+      "word": 3,
+      "bounding_box": {
+        "top": 1411,
+        "bottom": 1442,
+        "left": 1319,
+        "right": 1355
+      },
+      "text_span": { "start": 2575, "end": 2577 }
+    },
+    {
+      "line": 41,
+      "word": 4,
+      "bounding_box": {
+        "top": 1419,
+        "bottom": 1442,
+        "left": 1367,
+        "right": 1478
+      },
+      "text_span": { "start": 2578, "end": 2583 }
+    },
+    {
+      "line": 41,
+      "word": 5,
+      "bounding_box": {
+        "top": 1437,
+        "bottom": 1442,
+        "left": 1481,
+        "right": 1522
+      },
+      "text_span": { "start": 2583, "end": 2587 }
+    },
+    {
+      "line": 42,
+      "word": 0,
+      "bounding_box": {
+        "top": 312,
+        "bottom": 342,
+        "left": 1856,
+        "right": 2014
+      },
+      "text_span": { "start": 2588, "end": 2595 }
+    },
+    {
+      "line": 42,
+      "word": 1,
+      "bounding_box": {
+        "top": 312,
+        "bottom": 342,
+        "left": 2025,
+        "right": 2062
+      },
+      "text_span": { "start": 2596, "end": 2598 }
+    },
+    {
+      "line": 43,
+      "word": 0,
+      "bounding_box": {
+        "top": 362,
+        "bottom": 392,
+        "left": 1739,
+        "right": 1910
+      },
+      "text_span": { "start": 2599, "end": 2605 }
+    },
+    {
+      "line": 43,
+      "word": 1,
+      "bounding_box": {
+        "top": 361,
+        "bottom": 392,
+        "left": 1924,
+        "right": 1980
+      },
+      "text_span": { "start": 2606, "end": 2608 }
+    },
+    {
+      "line": 43,
+      "word": 2,
+      "bounding_box": {
+        "top": 362,
+        "bottom": 392,
+        "left": 1992,
+        "right": 2074
+      },
+      "text_span": { "start": 2609, "end": 2612 }
+    },
+    {
+      "line": 43,
+      "word": 3,
+      "bounding_box": {
+        "top": 362,
+        "bottom": 392,
+        "left": 2087,
+        "right": 2178
+      },
+      "text_span": { "start": 2613, "end": 2617 }
+    },
+    {
+      "line": 44,
+      "word": 0,
+      "bounding_box": {
+        "top": 412,
+        "bottom": 442,
+        "left": 1690,
+        "right": 1777
+      },
+      "text_span": { "start": 2618, "end": 2622 }
+    },
+    {
+      "line": 44,
+      "word": 1,
+      "bounding_box": {
+        "top": 411,
+        "bottom": 442,
+        "left": 1790,
+        "right": 1980
+      },
+      "text_span": { "start": 2623, "end": 2632 }
+    },
+    {
+      "line": 44,
+      "word": 2,
+      "bounding_box": {
+        "top": 412,
+        "bottom": 442,
+        "left": 1994,
+        "right": 2057
+      },
+      "text_span": { "start": 2633, "end": 2636 }
+    },
+    {
+      "line": 44,
+      "word": 3,
+      "bounding_box": {
+        "top": 412,
+        "bottom": 442,
+        "left": 2072,
+        "right": 2223
+      },
+      "text_span": { "start": 2637, "end": 2645 }
+    },
+    {
+      "line": 45,
+      "word": 0,
+      "bounding_box": {
+        "top": 464,
+        "bottom": 492,
+        "left": 1937,
+        "right": 1974
+      },
+      "text_span": { "start": 2646, "end": 2648 }
+    },
+    {
+      "line": 46,
+      "word": 0,
+      "bounding_box": {
+        "top": 512,
+        "bottom": 542,
+        "left": 1681,
+        "right": 1732
+      },
+      "text_span": { "start": 2649, "end": 2652 }
+    },
+    {
+      "line": 46,
+      "word": 1,
+      "bounding_box": {
+        "top": 512,
+        "bottom": 542,
+        "left": 1746,
+        "right": 1849
+      },
+      "text_span": { "start": 2653, "end": 2657 }
+    },
+    {
+      "line": 46,
+      "word": 2,
+      "bounding_box": {
+        "top": 512,
+        "bottom": 542,
+        "left": 1863,
+        "right": 1974
+      },
+      "text_span": { "start": 2658, "end": 2664 }
+    },
+    {
+      "line": 46,
+      "word": 3,
+      "bounding_box": {
+        "top": 511,
+        "bottom": 542,
+        "left": 1988,
+        "right": 2024
+      },
+      "text_span": { "start": 2665, "end": 2667 }
+    },
+    {
+      "line": 46,
+      "word": 4,
+      "bounding_box": {
+        "top": 512,
+        "bottom": 542,
+        "left": 2035,
+        "right": 2192
+      },
+      "text_span": { "start": 2668, "end": 2676 }
+    },
+    {
+      "line": 46,
+      "word": 5,
+      "bounding_box": {
+        "top": 512,
+        "bottom": 542,
+        "left": 2206,
+        "right": 2234
+      },
+      "text_span": { "start": 2677, "end": 2679 }
+    },
+    {
+      "line": 47,
+      "word": 0,
+      "bounding_box": {
+        "top": 569,
+        "bottom": 592,
+        "left": 1734,
+        "right": 1777
+      },
+      "text_span": { "start": 2680, "end": 2682 }
+    },
+    {
+      "line": 47,
+      "word": 1,
+      "bounding_box": {
+        "top": 564,
+        "bottom": 592,
+        "left": 1791,
+        "right": 1934
+      },
+      "text_span": { "start": 2683, "end": 2690 }
+    },
+    {
+      "line": 47,
+      "word": 2,
+      "bounding_box": {
+        "top": 564,
+        "bottom": 592,
+        "left": 1946,
+        "right": 1983
+      },
+      "text_span": { "start": 2691, "end": 2693 }
+    },
+    {
+      "line": 47,
+      "word": 3,
+      "bounding_box": {
+        "top": 569,
+        "bottom": 592,
+        "left": 1997,
+        "right": 2119
+      },
+      "text_span": { "start": 2694, "end": 2700 }
+    },
+    {
+      "line": 47,
+      "word": 4,
+      "bounding_box": {
+        "top": 562,
+        "bottom": 592,
+        "left": 2133,
+        "right": 2183
+      },
+      "text_span": { "start": 2701, "end": 2704 }
+    },
+    {
+      "line": 48,
+      "word": 0,
+      "bounding_box": {
+        "top": 611,
+        "bottom": 642,
+        "left": 1729,
+        "right": 1832
+      },
+      "text_span": { "start": 2705, "end": 2711 }
+    },
+    {
+      "line": 48,
+      "word": 1,
+      "bounding_box": {
+        "top": 612,
+        "bottom": 642,
+        "left": 1849,
+        "right": 1920
+      },
+      "text_span": { "start": 2712, "end": 2715 }
+    },
+    {
+      "line": 48,
+      "word": 2,
+      "bounding_box": {
+        "top": 611,
+        "bottom": 642,
+        "left": 1935,
+        "right": 2017
+      },
+      "text_span": { "start": 2716, "end": 2720 }
+    },
+    {
+      "line": 48,
+      "word": 3,
+      "bounding_box": {
+        "top": 611,
+        "bottom": 642,
+        "left": 2029,
+        "right": 2112
+      },
+      "text_span": { "start": 2721, "end": 2725 }
+    },
+    {
+      "line": 48,
+      "word": 4,
+      "bounding_box": {
+        "top": 612,
+        "bottom": 642,
+        "left": 2126,
+        "right": 2184
+      },
+      "text_span": { "start": 2726, "end": 2729 }
+    },
+    {
+      "line": 49,
+      "word": 0,
+      "bounding_box": {
+        "top": 662,
+        "bottom": 692,
+        "left": 1697,
+        "right": 1852
+      },
+      "text_span": { "start": 2730, "end": 2738 }
+    },
+    {
+      "line": 49,
+      "word": 1,
+      "bounding_box": {
+        "top": 661,
+        "bottom": 692,
+        "left": 1865,
+        "right": 1901
+      },
+      "text_span": { "start": 2739, "end": 2741 }
+    },
+    {
+      "line": 49,
+      "word": 2,
+      "bounding_box": {
+        "top": 662,
+        "bottom": 692,
+        "left": 1912,
+        "right": 1970
+      },
+      "text_span": { "start": 2742, "end": 2745 }
+    },
+    {
+      "line": 49,
+      "word": 3,
+      "bounding_box": {
+        "top": 662,
+        "bottom": 692,
+        "left": 1982,
+        "right": 2043
+      },
+      "text_span": { "start": 2746, "end": 2750 }
+    },
+    {
+      "line": 49,
+      "word": 4,
+      "bounding_box": {
+        "top": 664,
+        "bottom": 692,
+        "left": 2056,
+        "right": 2219
+      },
+      "text_span": { "start": 2751, "end": 2759 }
+    },
+    {
+      "line": 50,
+      "word": 0,
+      "bounding_box": {
+        "top": 712,
+        "bottom": 742,
+        "left": 1812,
+        "right": 1928
+      },
+      "text_span": { "start": 2760, "end": 2765 }
+    },
+    {
+      "line": 50,
+      "word": 1,
+      "bounding_box": {
+        "top": 712,
+        "bottom": 742,
+        "left": 1940,
+        "right": 1998
+      },
+      "text_span": { "start": 2766, "end": 2769 }
+    },
+    {
+      "line": 50,
+      "word": 2,
+      "bounding_box": {
+        "top": 712,
+        "bottom": 742,
+        "left": 2013,
+        "right": 2088
+      },
+      "text_span": { "start": 2770, "end": 2774 }
+    },
+    {
+      "line": 50,
+      "word": 3,
+      "bounding_box": {
+        "top": 737,
+        "bottom": 742,
+        "left": 2093,
+        "right": 2099
+      },
+      "text_span": { "start": 2774, "end": 2775 }
+    },
+    {
+      "line": 51,
+      "word": 0,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 1678,
+        "right": 1765
+      },
+      "text_span": { "start": 2776, "end": 2782 }
+    },
+    {
+      "line": 51,
+      "word": 1,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 1778,
+        "right": 1868
+      },
+      "text_span": { "start": 2783, "end": 2787 }
+    },
+    {
+      "line": 51,
+      "word": 2,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 1883,
+        "right": 1970
+      },
+      "text_span": { "start": 2788, "end": 2792 }
+    },
+    {
+      "line": 51,
+      "word": 3,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 1984,
+        "right": 2082
+      },
+      "text_span": { "start": 2793, "end": 2797 }
+    },
+    {
+      "line": 51,
+      "word": 4,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 2094,
+        "right": 2165
+      },
+      "text_span": { "start": 2798, "end": 2802 }
+    },
+    {
+      "line": 51,
+      "word": 5,
+      "bounding_box": {
+        "top": 812,
+        "bottom": 842,
+        "left": 2177,
+        "right": 2236
+      },
+      "text_span": { "start": 2803, "end": 2806 }
+    },
+    {
+      "line": 52,
+      "word": 0,
+      "bounding_box": {
+        "top": 861,
+        "bottom": 892,
+        "left": 1734,
+        "right": 1936
+      },
+      "text_span": { "start": 2807, "end": 2815 }
+    },
+    {
+      "line": 52,
+      "word": 1,
+      "bounding_box": {
+        "top": 862,
+        "bottom": 892,
+        "left": 1952,
+        "right": 2101
+      },
+      "text_span": { "start": 2816, "end": 2822 }
+    },
+    {
+      "line": 52,
+      "word": 2,
+      "bounding_box": {
+        "top": 862,
+        "bottom": 892,
+        "left": 2116,
+        "right": 2179
+      },
+      "text_span": { "start": 2823, "end": 2826 }
+    },
+    {
+      "line": 53,
+      "word": 0,
+      "bounding_box": {
+        "top": 912,
+        "bottom": 942,
+        "left": 1884,
+        "right": 2028
+      },
+      "text_span": { "start": 2827, "end": 2835 }
+    },
+    {
+      "line": 54,
+      "word": 0,
+      "bounding_box": {
+        "top": 962,
+        "bottom": 992,
+        "left": 1689,
+        "right": 1803
+      },
+      "text_span": { "start": 2836, "end": 2841 }
+    },
+    {
+      "line": 54,
+      "word": 1,
+      "bounding_box": {
+        "top": 962,
+        "bottom": 992,
+        "left": 1817,
+        "right": 2047
+      },
+      "text_span": { "start": 2842, "end": 2854 }
+    },
+    {
+      "line": 54,
+      "word": 2,
+      "bounding_box": {
+        "top": 969,
+        "bottom": 992,
+        "left": 2061,
+        "right": 2105
+      },
+      "text_span": { "start": 2855, "end": 2857 }
+    },
+    {
+      "line": 54,
+      "word": 3,
+      "bounding_box": {
+        "top": 969,
+        "bottom": 992,
+        "left": 2120,
+        "right": 2141
+      },
+      "text_span": { "start": 2858, "end": 2859 }
+    },
+    {
+      "line": 54,
+      "word": 4,
+      "bounding_box": {
+        "top": 969,
+        "bottom": 992,
+        "left": 2155,
+        "right": 2229
+      },
+      "text_span": { "start": 2860, "end": 2863 }
+    },
+    {
+      "line": 55,
+      "word": 0,
+      "bounding_box": {
+        "top": 1012,
+        "bottom": 1042,
+        "left": 1701,
+        "right": 1853
+      },
+      "text_span": { "start": 2864, "end": 2871 }
+    },
+    {
+      "line": 55,
+      "word": 1,
+      "bounding_box": {
+        "top": 1019,
+        "bottom": 1042,
+        "left": 1868,
+        "right": 1980
+      },
+      "text_span": { "start": 2872, "end": 2877 }
+    },
+    {
+      "line": 55,
+      "word": 2,
+      "bounding_box": {
+        "top": 1012,
+        "bottom": 1042,
+        "left": 1993,
+        "right": 2115
+      },
+      "text_span": { "start": 2878, "end": 2885 }
+    },
+    {
+      "line": 55,
+      "word": 3,
+      "bounding_box": {
+        "top": 1019,
+        "bottom": 1042,
+        "left": 2130,
+        "right": 2216
+      },
+      "text_span": { "start": 2886, "end": 2890 }
+    },
+    {
+      "line": 56,
+      "word": 0,
+      "bounding_box": {
+        "top": 1069,
+        "bottom": 1092,
+        "left": 1702,
+        "right": 1795
+      },
+      "text_span": { "start": 2891, "end": 2895 }
+    },
+    {
+      "line": 56,
+      "word": 1,
+      "bounding_box": {
+        "top": 1061,
+        "bottom": 1092,
+        "left": 1809,
+        "right": 1965
+      },
+      "text_span": { "start": 2896, "end": 2904 }
+    },
+    {
+      "line": 56,
+      "word": 2,
+      "bounding_box": {
+        "top": 1062,
+        "bottom": 1092,
+        "left": 1979,
+        "right": 2059
+      },
+      "text_span": { "start": 2905, "end": 2909 }
+    },
+    {
+      "line": 56,
+      "word": 3,
+      "bounding_box": {
+        "top": 1062,
+        "bottom": 1092,
+        "left": 2073,
+        "right": 2131
+      },
+      "text_span": { "start": 2910, "end": 2913 }
+    },
+    {
+      "line": 56,
+      "word": 4,
+      "bounding_box": {
+        "top": 1061,
+        "bottom": 1092,
+        "left": 2143,
+        "right": 2211
+      },
+      "text_span": { "start": 2914, "end": 2919 }
+    },
+    {
+      "line": 57,
+      "word": 0,
+      "bounding_box": {
+        "top": 1112,
+        "bottom": 1142,
+        "left": 1772,
+        "right": 1922
+      },
+      "text_span": { "start": 2920, "end": 2927 }
+    },
+    {
+      "line": 57,
+      "word": 1,
+      "bounding_box": {
+        "top": 1112,
+        "bottom": 1142,
+        "left": 1940,
+        "right": 2045
+      },
+      "text_span": { "start": 2928, "end": 2933 }
+    },
+    {
+      "line": 57,
+      "word": 2,
+      "bounding_box": {
+        "top": 1111,
+        "bottom": 1142,
+        "left": 2060,
+        "right": 2135
+      },
+      "text_span": { "start": 2934, "end": 2938 }
+    },
+    {
+      "line": 57,
+      "word": 3,
+      "bounding_box": {
+        "top": 1137,
+        "bottom": 1142,
+        "left": 2134,
+        "right": 2140
+      },
+      "text_span": { "start": 2938, "end": 2939 }
+    },
+    {
+      "line": 58,
+      "word": 0,
+      "bounding_box": {
+        "top": 1212,
+        "bottom": 1242,
+        "left": 1675,
+        "right": 1780
+      },
+      "text_span": { "start": 2940, "end": 2944 }
+    },
+    {
+      "line": 58,
+      "word": 1,
+      "bounding_box": {
+        "top": 1212,
+        "bottom": 1242,
+        "left": 1795,
+        "right": 1990
+      },
+      "text_span": { "start": 2945, "end": 2954 }
+    },
+    {
+      "line": 58,
+      "word": 2,
+      "bounding_box": {
+        "top": 1237,
+        "bottom": 1242,
+        "left": 1995,
+        "right": 2001
+      },
+      "text_span": { "start": 2954, "end": 2955 }
+    },
+    {
+      "line": 58,
+      "word": 3,
+      "bounding_box": {
+        "top": 1212,
+        "bottom": 1242,
+        "left": 2015,
+        "right": 2081
+      },
+      "text_span": { "start": 2956, "end": 2960 }
+    },
+    {
+      "line": 58,
+      "word": 4,
+      "bounding_box": {
+        "top": 1212,
+        "bottom": 1242,
+        "left": 2095,
+        "right": 2241
+      },
+      "text_span": { "start": 2961, "end": 2969 }
+    },
+    {
+      "line": 59,
+      "word": 0,
+      "bounding_box": {
+        "top": 1269,
+        "bottom": 1292,
+        "left": 1671,
+        "right": 1817
+      },
+      "text_span": { "start": 2970, "end": 2976 }
+    },
+    {
+      "line": 59,
+      "word": 1,
+      "bounding_box": {
+        "top": 1262,
+        "bottom": 1292,
+        "left": 1831,
+        "right": 1888
+      },
+      "text_span": { "start": 2977, "end": 2981 }
+    },
+    {
+      "line": 59,
+      "word": 2,
+      "bounding_box": {
+        "top": 1262,
+        "bottom": 1292,
+        "left": 1902,
+        "right": 1986
+      },
+      "text_span": { "start": 2982, "end": 2987 }
+    },
+    {
+      "line": 59,
+      "word": 3,
+      "bounding_box": {
+        "top": 1262,
+        "bottom": 1292,
+        "left": 2000,
+        "right": 2124
+      },
+      "text_span": { "start": 2988, "end": 2995 }
+    },
+    {
+      "line": 59,
+      "word": 4,
+      "bounding_box": {
+        "top": 1262,
+        "bottom": 1292,
+        "left": 2139,
+        "right": 2243
+      },
+      "text_span": { "start": 2996, "end": 3000 }
+    },
+    {
+      "line": 60,
+      "word": 0,
+      "bounding_box": {
+        "top": 1311,
+        "bottom": 1342,
+        "left": 1704,
+        "right": 1754
+      },
+      "text_span": { "start": 3001, "end": 3004 }
+    },
+    {
+      "line": 60,
+      "word": 1,
+      "bounding_box": {
+        "top": 1312,
+        "bottom": 1342,
+        "left": 1766,
+        "right": 1824
+      },
+      "text_span": { "start": 3005, "end": 3008 }
+    },
+    {
+      "line": 60,
+      "word": 2,
+      "bounding_box": {
+        "top": 1312,
+        "bottom": 1342,
+        "left": 1837,
+        "right": 1931
+      },
+      "text_span": { "start": 3009, "end": 3014 }
+    },
+    {
+      "line": 60,
+      "word": 3,
+      "bounding_box": {
+        "top": 1312,
+        "bottom": 1342,
+        "left": 1947,
+        "right": 2037
+      },
+      "text_span": { "start": 3015, "end": 3019 }
+    },
+    {
+      "line": 60,
+      "word": 4,
+      "bounding_box": {
+        "top": 1311,
+        "bottom": 1342,
+        "left": 2052,
+        "right": 2088
+      },
+      "text_span": { "start": 3020, "end": 3022 }
+    },
+    {
+      "line": 60,
+      "word": 5,
+      "bounding_box": {
+        "top": 1312,
+        "bottom": 1342,
+        "left": 2101,
+        "right": 2211
+      },
+      "text_span": { "start": 3023, "end": 3029 }
+    },
+    {
+      "line": 61,
+      "word": 0,
+      "bounding_box": {
+        "top": 1362,
+        "bottom": 1392,
+        "left": 1688,
+        "right": 1870
+      },
+      "text_span": { "start": 3030, "end": 3040 }
+    },
+    {
+      "line": 61,
+      "word": 1,
+      "bounding_box": {
+        "top": 1364,
+        "bottom": 1392,
+        "left": 1884,
+        "right": 1920
+      },
+      "text_span": { "start": 3041, "end": 3043 }
+    },
+    {
+      "line": 61,
+      "word": 2,
+      "bounding_box": {
+        "top": 1364,
+        "bottom": 1392,
+        "left": 1934,
+        "right": 2061
+      },
+      "text_span": { "start": 3044, "end": 3051 }
+    },
+    {
+      "line": 61,
+      "word": 3,
+      "bounding_box": {
+        "top": 1361,
+        "bottom": 1392,
+        "left": 2073,
+        "right": 2224
+      },
+      "text_span": { "start": 3052, "end": 3059 }
+    },
+    {
+      "line": 62,
+      "word": 0,
+      "bounding_box": {
+        "top": 1414,
+        "bottom": 1442,
+        "left": 1812,
+        "right": 1849
+      },
+      "text_span": { "start": 3060, "end": 3062 }
+    },
+    {
+      "line": 62,
+      "word": 1,
+      "bounding_box": {
+        "top": 1412,
+        "bottom": 1442,
+        "left": 1861,
+        "right": 1919
+      },
+      "text_span": { "start": 3063, "end": 3066 }
+    },
+    {
+      "line": 62,
+      "word": 2,
+      "bounding_box": {
+        "top": 1412,
+        "bottom": 1442,
+        "left": 1932,
+        "right": 2052
+      },
+      "text_span": { "start": 3067, "end": 3073 }
+    },
+    {
+      "line": 62,
+      "word": 3,
+      "bounding_box": {
+        "top": 1437,
+        "bottom": 1442,
+        "left": 2056,
+        "right": 2102
+      },
+      "text_span": { "start": 3073, "end": 3077 }
+    }
+  ]
+}

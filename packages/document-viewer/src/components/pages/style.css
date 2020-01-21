@@ -1,0 +1,14 @@
+.Pages {
+  position: relative;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+
+  background: rgb(245, 247, 249);
+}
+
+.Pages * {
+  user-select: none;
+}
