@@ -1,0 +1,43 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
+import Document from "./containers/document/index";
+import Documents from "./containers/documents/index";
+
+function App() {
+
+  const [documents, setDocuments] = React.useState<any>([]);
+
+  React.useEffect(() => {
+    async function fetchDocuments() {
+      let response = await fetch("/documents");
+      let docs = await response.json();
+
+      setDocuments(docs);
+    }
+
+    //fetchDocuments();
+    setDocuments([{id: 1, name: "document.pdf"}]);
+  }, []);
+
+  return (
+    <Router>
+      <main className="App">
+        <Switch>
+          <Route path="/document/:id">
+            <Document documents={documents} />
+          </Route>
+          <Route path="/">
+            <Documents documents={documents} />
+          </Route>
+        </Switch>
+      </main>
+    </Router>
+  );
+}
+
+export default App;
