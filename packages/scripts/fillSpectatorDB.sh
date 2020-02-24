@@ -14,6 +14,6 @@ do
   tesseract $j $dir/$filename/$output -l eng tsv    
 done
 
-dbfiller/dbfiller $dir $filename $(ls $dir/$filename/*.png | wc -l) $spectatorDB
+dbfiller $dir $filename $(ls $dir/$filename/*.png | wc -l) $spectatorDB
 
 rm -rf $dir/$filename
