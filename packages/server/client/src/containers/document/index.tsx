@@ -2,7 +2,8 @@ import React from "react";
 
 import { useHistory, useParams } from "react-router-dom";
 
-import DocumentViewer from "../../document-viewer-copy/containers/documentviewer/index";
+import DocumentViewer from "document-viewer";
+import "document-viewer/dist/style.css";
 
 import { Document as DocumentType } from "../../types";
 

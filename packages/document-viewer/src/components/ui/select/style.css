@@ -3,6 +3,8 @@
 }
 
 .Select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   background: #2d3335;
   border: none;

@@ -51,15 +51,11 @@ export const ToolBar = (props: ToolBarProps) => {
     onZoomChange(parseInt(event.target.value));
   };
 
-  const handleNavigationItemUp = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleNavigationItemUp = () => {
     onNavigationIndexChange(navigationIndex - 1);
   };
 
-  const handleNavigationItemDown = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleNavigationItemDown = () => {
     onNavigationIndexChange(navigationIndex + 1);
   };
 
