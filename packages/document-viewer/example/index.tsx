@@ -1,10 +1,9 @@
-import React from "react";
-
-import DocumentViewer from "./containers/documentviewer/index";
+import 'react-app-polyfill/ie11';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import DocumentViewer from '../src/index';
 
 import { Server } from "miragejs";
-
-import "./App.css";
 
 import imagePage1 from "./test-documents/simple/images/1.png";
 import imagePage2 from "./test-documents/simple/images/2.png";
@@ -13,7 +12,7 @@ import standoffPage1 from "./test-documents/simple/standoffs/1.json";
 import standoffPage2 from "./test-documents/simple/standoffs/2.json";
 import standoffPage3 from "./test-documents/simple/standoffs/3.json";
 
-const topics = ["topic-11topic-11topic-11topic-11topic-11topic-11", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2", "topic-2","topic-2"];
+const topics = ["topic-1", "topic-2"];
 
 const annotations = [
   {
@@ -26,60 +25,6 @@ const annotations = [
     topic: topics[0]
   },
   {
-    characterStart: 0,
-    characterEnd: 19,
-    pageStart: 1,
-    pageEnd: 2,
-    top: 304,
-    left: 301,
-    topic: "a"
-  },
-  {
-    characterStart: 0,
-    characterEnd: 19,
-    pageStart: 1,
-    pageEnd: 2,
-    top: 304,
-    left: 301,
-    topic: "b"
-  },
-  {
-    characterStart: 0,
-    characterEnd: 19,
-    pageStart: 1,
-    pageEnd: 2,
-    top: 304,
-    left: 301,
-    topic: "c"
-  },
-  {
-    characterStart: 0,
-    characterEnd: 19,
-    pageStart: 1,
-    pageEnd: 2,
-    top: 304,
-    left: 301,
-    topic: "d"
-  },
-  {
-    characterStart: 0,
-    characterEnd: 19,
-    pageStart: 1,
-    pageEnd: 2,
-    top: 304,
-    left: 301,
-    topic: "e"
-  },
-  {
-    characterStart: 0,
-    characterEnd: 19,
-    pageStart: 1,
-    pageEnd: 2,
-    top: 304,
-    left: 301,
-    topic: "f"
-  },
-  {
     characterStart: 19,
     characterEnd: 30,
     pageStart: 3,
@@ -90,7 +35,7 @@ const annotations = [
   }
 ];
 
-const document = {
+const documentData = {
   name: "simple-document.pdf",
   pages: [
     {
@@ -125,21 +70,21 @@ new Server({
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="App" style={{height: "100%", width: "100%", margin: "0"}}>
       <DocumentViewer
         annotations={annotations}
-        name={document.name}
-        lazyLoadingWindow={1}
+        name={documentData.name}
+        lazyLoadingWindow={5}
         onAnnotationCreate={(annotation => console.log(annotation))}
         onAnnotationDelete={(annotation => console.log(annotation))}
         onClose={() => console.log('Close')}
         onNextDocument={() => console.log('Next')}
         onPreviousDocument={() => console.log('Previous')}
-        pages={document.pages}
+        pages={documentData.pages}
         topics={topics}
       />
     </div>
   );
 };
 
-export default App;
+ReactDOM.render(<App />, document.getElementById('root'));

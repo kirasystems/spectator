@@ -54,8 +54,7 @@ function annotationsPerPage(
 
 function selectionPerPage(
   selectionStart: Selection,
-  selectionEnd: Selection,
-  numberOfPages: number
+  selectionEnd: Selection
 ): Map<number, PageSelection> {
   let pages = new Map();
 
@@ -167,7 +166,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
   );
 
   const pageSelection = React.useMemo(
-    () => selectionPerPage(selectionStart, selectionEnd, pages.length),
+    () => selectionPerPage(selectionStart, selectionEnd),
     [selectionStart, selectionEnd, pages.length]
   );
 
@@ -250,7 +249,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
   );
 
   const handleClick = React.useCallback(
-    (event: React.MouseEvent) => {
+    () => {
       if (navigationMode === NavigationModes.Annotation) return;
 
       onFocusingAnnotationChange(false);
@@ -276,7 +275,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
     [setSelectionEnd, selectionEnd]
   );
 
-  const handleScroll = React.useCallback((event: React.UIEvent<HTMLOListElement>) => {
+  const handleScroll = React.useCallback(() => {
     if (!pagesEl || !pagesEl.current) return;
 
     onPageChange(pageInView(pagesEl.current));

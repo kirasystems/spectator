@@ -1,7 +1,0 @@
-.Document-Viewer {
-  display: flex;
-  flex-flow: column nowrap;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-}

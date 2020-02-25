@@ -1,6 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import DocumentViewer from "./containers/documentviewer/index"; 
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default DocumentViewer;

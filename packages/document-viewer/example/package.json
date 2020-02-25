@@ -1,0 +1,35 @@
+{
+  "name": "playground",
+  "private": true,
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "react-app-polyfill": "^1.0.0"
+  },
+  "alias": {
+    "react": "../node_modules/react",
+    "react-dom": "../node_modules/react-dom/profiling",
+    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "miragejs": "^0.1.33",
+    "parcel": "^1.12.3",
+    "postcss-modules": "^1.5.0",
+    "typescript": "^3.4.5"
+  },
+  "postcss": {
+    "modules": true,
+    "plugins": {
+      "autoprefixer": true
+    }
+  },
+  "browserslist": [
+    ">1%",
+    "last 4 versions"
+  ]
+}

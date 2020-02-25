@@ -8,11 +8,12 @@ import (
 	"os"
 	"time"
 
-	"github.com/tus/tusd/pkg/filestore"
-	tusd "github.com/tus/tusd/pkg/handler"
-
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+
+	_ "github.com/mattn/go-sqlite3"
+	"github.com/tus/tusd/pkg/filestore"
+	tusd "github.com/tus/tusd/pkg/handler"
 )
 
 // Annotation struct holds the minimal set of data we need to describe an annotation/highlight
@@ -71,6 +72,12 @@ type Token struct {
 // Tokens represents a collection of DocumentSummary
 type Tokens []Token
 
+func checkErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+
 func documentsHandler(w http.ResponseWriter, r *http.Request) {
 	documents := DocumentSummaries{
 		DocumentSummary{ID: 1, Name: "document.pdf"},
@@ -78,9 +85,8 @@ func documentsHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(documents); err != nil {
-		panic(err)
-	}
+	err := json.NewEncoder(w).Encode(documents)
+	checkErr(err)
 }
 
 func documentHandler(w http.ResponseWriter, r *http.Request) {
@@ -103,9 +109,8 @@ func documentHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(document); err != nil {
-		panic(err)
-	}
+	err := json.NewEncoder(w).Encode(document)
+	checkErr(err)
 }
 
 func tokensHandler(w http.ResponseWriter, r *http.Request) {
@@ -122,9 +127,8 @@ func tokensHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(tokens); err != nil {
-		panic(err)
-	}
+	err := json.NewEncoder(w).Encode(tokens)
+	checkErr(err)
 }
 
 func imageHandler(w http.ResponseWriter, r *http.Request) {
@@ -140,6 +144,8 @@ func loggingMiddleware(next http.Handler) http.Handler {
 }
 
 func main() {
+	//db, err := sql.Connect("sqlite3", "Spectator.db")
+
 	// Create a new FileStore instance which is responsible for
 	// storing the uploaded file on disk in the specified directory.
 	// This path _must_ exist before tusd will store uploads in it.
@@ -194,7 +200,7 @@ func main() {
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./client/build/static")))).Methods(http.MethodGet)
 	r.HandleFunc("/", indexHandler).Methods(http.MethodGet)
 
-	r.NotFoundHandler = r.NewRoute().HandlerFunc(http.NotFound).GetHandler()
+	//r.NotFoundHandler = r.NewRoute().HandlerFunc(http.NotFound).GetHandler()
 
 	log.Printf("Server will start on port 8000")
 	srv := &http.Server{

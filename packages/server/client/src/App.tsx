@@ -8,6 +8,8 @@ import {
 import Document from "./containers/document/index";
 import Documents from "./containers/documents/index";
 
+import "./App.css";
+
 function App() {
 
   const [documents, setDocuments] = React.useState<any>([]);
