@@ -127,6 +127,7 @@ func parseImage(imgFile string) (int, int, []byte, error) {
 		return -1, -1, nil, fmt.Errorf("unable to read image config: %w", err)
 	}
 	pageWidth, pageHeight := imgConfig.Width, imgConfig.Height
+  img.Seek(0,0)
 	imgBuf, err := ioutil.ReadAll(img)
 	if err != nil {
 		return -1, -1, nil, fmt.Errorf("unable to read image bytes: %w", err)
