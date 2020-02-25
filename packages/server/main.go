@@ -1,11 +1,14 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/gorilla/handlers"
@@ -15,6 +18,9 @@ import (
 	"github.com/tus/tusd/pkg/filestore"
 	tusd "github.com/tus/tusd/pkg/handler"
 )
+
+// Global connection pool
+var db *sql.DB
 
 // Annotation struct holds the minimal set of data we need to describe an annotation/highlight
 type Annotation struct {
@@ -79,60 +85,93 @@ func checkErr(err error) {
 }
 
 func documentsHandler(w http.ResponseWriter, r *http.Request) {
-	documents := DocumentSummaries{
-		DocumentSummary{ID: 1, Name: "document.pdf"},
+	rows, err := db.Query("SELECT document_id, name FROM documents")
+	checkErr(err)
+	defer rows.Close()
+
+	documents := DocumentSummaries{}
+
+	for rows.Next() {
+		var documentSummary DocumentSummary
+
+		err = rows.Scan(&documentSummary.ID, &documentSummary.Name)
+		checkErr(err)
+
+		documents = append(documents, documentSummary)
 	}
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(documents)
+	err = json.NewEncoder(w).Encode(documents)
 	checkErr(err)
 }
 
 func documentHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	documentID := params["documentId"]
-	fmt.Printf("Received document handler with documentID %v \n", documentID)
 
-	document := Document{
-		ID:   1,
-		Name: "document.pdf",
-		Pages: []Page{
-			Page{
-				OriginalHeight: 1000,
-				OriginalWidth:  1000,
-				ImageURL:       "/document/1/page/1/image",
-				TokensURL:      "/document/1/page/1/tokens",
-			},
-		},
+	var document Document
+
+	err := db.QueryRow("SELECT document_id, name FROM documents WHERE document_id = ?", documentID).Scan(&document.ID, &document.Name)
+	checkErr(err)
+
+	rows, err := db.Query("SELECT page, height, width FROM document_pages ORDER BY page")
+	checkErr(err)
+	defer rows.Close()
+
+	pages := []Page{}
+
+	for rows.Next() {
+		var pageNumber int
+		var page Page
+
+		err = rows.Scan(&pageNumber, &page.OriginalHeight, &page.OriginalWidth)
+		checkErr(err)
+
+		page.ImageURL = fmt.Sprintf("/document/%s/page/%d/image", documentID, pageNumber)
+		page.TokensURL = fmt.Sprintf("/document/%s/page/%d/tokens", documentID, pageNumber)
+
+		pages = append(pages, page)
 	}
+
+	document.Pages = pages
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(document)
+	err = json.NewEncoder(w).Encode(document)
 	checkErr(err)
 }
 
 func tokensHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	documentID := params["documentId"]
-	pageNumber := params["pageNumber"]
-	fmt.Printf("Received tokens handler with document ID %v and page number %v\n", documentID, pageNumber)
+	documentID, _ := strconv.Atoi(params["documentId"])
+	pageNumber, _ := strconv.Atoi(params["pageNumber"])
 
-	tokens := Tokens{
-		Token{CharacterStart: 1, CharacterEnd: 2, Line: 1, BoundingBox: BoundingBox{Top: 1, Left: 1, Bottom: 2, Right: 2}},
-		Token{CharacterStart: 2, CharacterEnd: 3, Line: 2, BoundingBox: BoundingBox{Top: 2, Left: 1, Bottom: 3, Right: 2}},
-		Token{CharacterStart: 3, CharacterEnd: 4, Line: 3, BoundingBox: BoundingBox{Top: 3, Left: 1, Bottom: 4, Right: 2}},
-	}
+	var tokensBlob []byte
+	err := db.QueryRow("SELECT tokens FROM document_pages WHERE document_id = ? AND page = ?", documentID, pageNumber).Scan(&tokensBlob)
+	checkErr(err)
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(tokens)
+	_, err = w.Write(tokensBlob)
 	checkErr(err)
 }
 
 func imageHandler(w http.ResponseWriter, r *http.Request) {
-	// not implemented
+	params := mux.Vars(r)
+	documentID, _ := strconv.Atoi(params["documentId"])
+	pageNumber, _ := strconv.Atoi(params["pageNumber"])
+
+	var imageBlob []byte
+	err := db.QueryRow("SELECT image FROM document_pages WHERE document_id = ? AND page = ?", documentID, pageNumber).Scan(&imageBlob)
+	checkErr(err)
+
+	ioutil.WriteFile("test.png", imageBlob, 0644)
+
+	w.Header().Set("Content-Type", "image/png")
+	w.WriteHeader(http.StatusOK)
+	_, err = w.Write(imageBlob)
+	checkErr(err)
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -144,7 +183,14 @@ func loggingMiddleware(next http.Handler) http.Handler {
 }
 
 func main() {
-	//db, err := sql.Connect("sqlite3", "Spectator.db")
+	dbLocation := "./spectator.db"
+	log.Printf("Connecting to %v", dbLocation)
+
+	var err error
+	db, err = sql.Open("sqlite3", dbLocation)
+	if err != nil {
+		panic(fmt.Errorf("Unable to connect to database: %v", err))
+	}
 
 	// Create a new FileStore instance which is responsible for
 	// storing the uploaded file on disk in the specified directory.
@@ -174,7 +220,7 @@ func main() {
 		NotifyCreatedUploads:    true,
 	})
 	if err != nil {
-		panic(fmt.Errorf("Unable to create handler: %s", err))
+		panic(fmt.Errorf("Unable to create handler: %w", err))
 	}
 
 	// Start another goroutine for receiving events from the handler whenever
