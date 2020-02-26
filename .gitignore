@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Spectator sqlite3 database
+spectator.db
