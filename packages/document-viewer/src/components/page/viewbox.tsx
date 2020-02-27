@@ -15,7 +15,7 @@ import {
 
 import "./style.css";
 
-const RECTANGLE_PADDING = 12; // px
+const RECTANGLE_PADDING = 6; // px
 
 type Rectangle = BoundingBox & {
   annotationTopic: string;
@@ -366,7 +366,7 @@ const Viewbox = (props: ViewboxrProps) => {
           Number.POSITIVE_INFINITY,
           Number.POSITIVE_INFINITY
         );
-        let firstIndex = intersectingIndices[0];
+        let firstIndex = Math.min(...intersectingIndices);
         
         if (Number.isInteger(firstIndex)) {
           onSelectionStart({index: firstIndex, page: pageNumber, token: tokens[firstIndex]});
@@ -387,7 +387,7 @@ const Viewbox = (props: ViewboxrProps) => {
           x2,
           y2
         );
-        let lastIndex = intersectingIndices[intersectingIndices.length - 1];
+        let lastIndex = Math.max(...intersectingIndices);
 
         // If you started selecting on previous pages and it had no tokens, 
         // we'll take the first of this page as the start
@@ -412,9 +412,10 @@ const Viewbox = (props: ViewboxrProps) => {
           originalPageWidth,
           pageImageWrapperRef.current
         );
+        
         let intersectingIndices = rtree.search(x1, y1, x2, y2);
-        let firstIndex = intersectingIndices[0];
-        let lastIndex = intersectingIndices[intersectingIndices.length - 1];
+        let firstIndex = Math.min(...intersectingIndices);
+        let lastIndex = Math.max(...intersectingIndices);
         
         onSelectionStart(Number.isInteger(firstIndex) ? { index: firstIndex, page: pageNumber, token: tokens[firstIndex] } : null);
         onSelectionEnd(Number.isInteger(lastIndex) ? { index: lastIndex, page: pageNumber, token: tokens[lastIndex] } : null);

@@ -22,12 +22,17 @@ const Documents = (props: DocumentsProps) => {
   const [dashboardVisible, setDashboardVisible] = React.useState(false);
 
   React.useEffect(() => {
-    let newUppy = Uppy().use(Tus, {
-      endpoint: 'http://localhost:8000/files/',
+    let newUppy = Uppy({
+      restrictions: {
+        allowedFileTypes: [".pdf"]
+      }
+    }).use(Tus, {
+      endpoint: '/files/',
       resume: true,
       autoRetry: true,
       retryDelays: [0, 1000, 3000, 5000]
     });
+
     setUppy(newUppy);
 
     return () => { newUppy.close() }

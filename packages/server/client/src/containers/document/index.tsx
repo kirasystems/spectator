@@ -15,6 +15,7 @@ const Document = (props: DocumentProps) => {
   const { documents } = props;
 
   const [document, setDocument] = React.useState<any>(null);
+  const [annotations, setAnnotations] = React.useState<any>([]);
 
   const history = useHistory();
   const { id } = useParams();
@@ -26,16 +27,18 @@ const Document = (props: DocumentProps) => {
       setDocument(doc);
     }
 
-    //fetchDocument();
-    setDocument({name: "document.pdf",
-                 pages: [
-                  {
-                    originalHeight: 1000,
-                    originalWidth: 2000,
-                    imageURL: "", 
-                    tokensURL: ""
-                  }
-                 ]});
+    fetchDocument();
+  }, [id]);
+
+  React.useEffect(() => {
+    async function fetchAnnotations() {
+      let response = await fetch("/document/" + id + "/annotations");
+      let anns = await response.json();
+      console.log("Anns:", anns);
+      setAnnotations(anns);
+    }
+
+    fetchAnnotations();
   }, [id]);
 
   const nextDocumentId = React.useMemo(() => {
@@ -60,15 +63,29 @@ const Document = (props: DocumentProps) => {
     return previousDocumentIndex >= 0 && previousDocumentIndex < documents.length ? documents[previousDocumentIndex].id : null;
   }, [id, documents]);
 
+  const handleAnnotationCreate = React.useCallback((annotation: any) => {
+    // TODO: CHANGE THAT
+    annotation.topicId = 1;
+    
+    fetch("/document/" + document.id + "/annotations", {
+        method: "post",
+        body: JSON.stringify(annotation)
+      }).then((response: any) => {
+        console.log("Annotation created:", response);
+      }).catch((error: any) => {
+        console.error("Annotation create:", error);
+      });
+  }, [document]);
+
   return (
     <div className="Document">
       {document && 
         <DocumentViewer 
-          annotations={[]}
+          annotations={annotations}
           name={document?.name}
-          onAnnotationCreate={() => console.log("Create")}
+          onAnnotationCreate={handleAnnotationCreate}
           onAnnotationDelete={() => console.log("Delete")}
-          onClose={() => console.log("Close")}
+          onClose={() => history.push("/")}
           onNextDocument={() => nextDocumentId && history.push("/document/" + nextDocumentId)}
           onPreviousDocument={() => previousDocumentId && history.push("/document/" + previousDocumentId)}
           pages={document?.pages}

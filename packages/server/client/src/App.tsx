@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
@@ -22,8 +22,7 @@ function App() {
       setDocuments(docs);
     }
 
-    //fetchDocuments();
-    setDocuments([{id: 1, name: "document.pdf"}]);
+    fetchDocuments();
   }, []);
 
   return (
