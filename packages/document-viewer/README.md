@@ -1,167 +1,94 @@
-# TSDX React User Guide
+# Document Viewer
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+The document viewer is a React component built in Typescript that allows a user to highlight parts of the text in order to create annotations.
 
-> This TSDX setup is meant for developing React components (not apps!) that can be published to NPM. If you’re looking to build an app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+## Getting started
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+You will need [node](https://nodejs.org/en/download/package-manager/) and [yarn](https://yarnpkg.com/getting-started/install). 
 
-## Commands
+`yarn install` to install the document viewer's dependencies.
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+There's a playground that enables faster local development with a very simple test document (see `playground` folder). 
+It uses (MirageJS)[https://miragejs.com/] to mock the server API.
 
-The recommended workflow is to run TSDX in one terminal:
+1. `yarn install` in the `playground` directory.
+2. `yarn start` will start server with hot-reload. Simply navigate to [http://localhost:1234](http://localhost:1234).
 
-```bash
-npm start # or yarn start
+`yarn build` packages the component so that it's ready to be used in another project.
+
+## React component
+
+The component can be rendered in any space, but it is recommended to allow the component to use all the width and height of the viewport for optimal usage.
+
+A quick example of how to use it would be:
+
+```
+<div className="App" style={{height: "100%", width: "100%", margin: "0"}}>
+  <DocumentViewer
+    annotations={[{
+      characterStart: 0,
+      characterEnd: 19,
+      pageStart: 1,
+      pageEnd: 1,
+      top: 304,
+      left: 301,
+      topic: "1"
+    }]}
+    name={"document.pdf"}
+    lazyLoadingWindow={5}   // optional
+    onAnnotationCreate={(annotation => console.log(annotation))}
+    onAnnotationDelete={(annotation => console.log(annotation))}
+    onClose={() => console.log('Close')}
+    onNextDocument={() => console.log('Next')}
+    onPreviousDocument={() => console.log('Previous')}
+    pages={[{
+      originalHeight: 842,
+      originalWidth: 595,
+      imageURL: "api/document/1/page/1/image", 
+      tokensURL: "api/document/1/page/1/tokens"
+    }]}
+    topics={["1", "2", "3"]}
+  />
+</div>
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+### Concepts
 
-Then run the example inside another:
+As a document viewer is somewhat of a complex user interface to build, it requires some concepts to be understood:
 
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
-```
+- `annotations`: They are the highlights in the text. An `annotation` is mainly defined by the [`characterStart` `characterEnd`[ pair and should, as much as possible, correspond with the start and the end of a word. If the annotation doesn't wrap nicely, the document viewer will do its best to try to map it to the closest words. 
+  - `characterStart`: The 0-based index of the first character of the highlight.
+  - `characterEnd`: The 0-based index of the last character of the highlight.
+  - `pageStart`: The 1-based index of the page containing `characterStart`.
+  - `pageEnd`: The 1-based index of the page containing `characterEnd`.
+  - `top` and `left` corresponds to the `top` and `left` position, in pixels, of the first character of the annotation in the original document. It is used to be able to jump directly to annotations.
+  - `topic`: The string representation of the topic.
+- `name`: The name of the document.
+- `lazyLoadingWindow` (optinal): As the document viewer is taking care of lazy loading the pages, it defines how many pages on both sides needs to be loaded. A value of 1 will mean to load 3 pages (-1, current, +1).
+- `onAnnotationCreate`: A callback used when a user highlights text and then click on a topic.
+- `onAnnotationDelete`: A callback used when a user clicks on the `X` of an annotation.
+- `onClose`: A callback used when a user clicks on the `X` of the document viewer.
+- `onNextDocument`: A callback used when a user clicks on the `->` of the document viewer.
+- `onPreviousDocument`: A callback used when a user clicks on the `<-` of the document viewer.
+- `pages`: The definition of all pages. The page are lazy loaded which is why it requires some URLs in its definition.
+  - `originalHeight`: The height, in pixels, of the original document. It is used to be able to create a translate the position of the mouse to something we can use the R-tree with.
+  - `originalWidth`: The width, in pixels, of the original document. It is used to be able to create a translate the position of the mouse to something we can use the R-tree with.
+  - `imageURL`: The URL to the image of the page. The PNG format is recommended as it performs well for our scenario.
+  - `tokensURL`: The URL to the tokens of the page. As there's normally a lot of tokens inA token is defined by:
+    - `line`: The 0-based index of the line containing the token. The line is supposed to reset to 0 when it's a new page.
+    - `characterStart`: The 0-based index of the first character of the token.
+    - `characterEnd`: The 0-based index of the last character of the token.
+    - `boundingBox`: The enclosing box wrapping the token.
+      - `top`: Position in pixels of `top` in the original document.
+      - `bottom`: Position in pixels of `bottom` in the original document.
+      - `left`: Position in pixels of `left` in the original document.
+      - `right`: Position in pixels of `right` in the original document.
+- `topics`: An order list of topics (strings) to choose from.
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, [we use Parcel's aliasing](https://github.com/palmerhq/tsdx/pull/88/files).
+### Design
 
-To do a one-off build, use `npm run build` or `yarn build`.
+The document viewer loads the original image of the pages and overlays an R-tree containing all the tokens in the page. When a user selects text, in reality, it keeps track of the mouse position, will translate the coordinates to what it will be in the original document. It will then query the R-tree and return the tokens that intersect with the rectangle created by the selection. As highlighting a passage in the text happens way less often than reading the document, we made the tradeoff of keeping the visualization part of the document viewer simple (loading the original image) while bringing more complexity on the text selection part.
 
-To run tests, use `npm test` or `yarn test`.
+### A word on annotation colours
 
-## Configuration
-
-Code quality is [set up for you](https://github.com/palmerhq/tsdx/pull/45/files) with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`. This runs the test watcher (Jest) in an interactive mode. By default, runs tests related to files changed since the last commit.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```shell
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
-
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-### Rollup
-
-TSDX uses [Rollup v1.x](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### Travis
-
-_to be completed_
-
-### Circle
-
-_to be completed_
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
-```
-
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
-
-## Module Formats
-
-CJS, ESModules, and UMD module formats are supported.
-
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
-
-## Using the Playground
-
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
-```
-
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**!
-
-## Deploying the Playground
-
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
-
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
-```
-
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
-
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
-```
-
-## Named Exports
-
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
-
-## Including Styles
-
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
-
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
-
-## Publishing to NPM
-
-We recommend using [np](https://github.com/sindresorhus/np).
-
-## Usage with Lerna
-
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
-
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
-
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
-
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
-
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+To have a maximal number of distinct colours (12 colours), we used a [generator](http://colorbrewer.org). As we don't want the highlight to block the text, we reduced the opacity of the colours and we used the css property `mix-blend-mode` to `multiply`. It still doesn't prevent a user from massively highlighting the text to a point you can't see the text well.

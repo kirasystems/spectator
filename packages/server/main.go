@@ -648,7 +648,11 @@ func deleteTopicHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 var clients = make(map[*websocket.Conn]bool)
-var upgrader = websocket.Upgrader{}
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
+}
 
 func broadcast(jsonData string) error {
 	for client := range clients {

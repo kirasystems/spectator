@@ -1,6 +1,4 @@
 link:
-	echo "Installing document-viewer dependencies"
-	cd ../../document-viewer; yarn install
 	echo "Linking the document-viewer and react"
 	cd ../../document-viewer/node_modules/react; yarn link
 	cd ../../document-viewer/node_modules/react; yarn link

@@ -8,9 +8,9 @@ import { Server } from "miragejs";
 import imagePage1 from "./test-documents/simple/images/1.png";
 import imagePage2 from "./test-documents/simple/images/2.png";
 import imagePage3 from "./test-documents/simple/images/3.png";
-import standoffPage1 from "./test-documents/simple/standoffs/1.json";
-import standoffPage2 from "./test-documents/simple/standoffs/2.json";
-import standoffPage3 from "./test-documents/simple/standoffs/3.json";
+import standoffPage1 from "./test-documents/simple/standoffs/1.json.js";
+import standoffPage2 from "./test-documents/simple/standoffs/2.json.js";
+import standoffPage3 from "./test-documents/simple/standoffs/3.json.js";
 
 const topics = ["topic-1", "topic-2"];
 

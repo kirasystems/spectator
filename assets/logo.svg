@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0beta2 (2b71d25, 2019-12-03)"
+   height="623.7146"
+   width="2425.3606"
+   sodipodi:docname="doc_viewer2.svg"
+   xml:space="preserve"
+   viewBox="0 0 2425.3607 623.71461"
+   y="0px"
+   x="0px"
+   id="Layer_1"
+   version="1.1"><metadata
+   id="metadata156"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs154"><rect
+     id="rect166"
+     height="309.6954"
+     width="337.2796"
+     y="-117.85979"
+     x="-410.00159" /><rect
+     id="rect160"
+     height="298.41095"
+     width="589.29895"
+     y="181.80499"
+     x="749.78888" /></defs><sodipodi:namedview
+   inkscape:current-layer="Layer_1"
+   inkscape:window-maximized="0"
+   inkscape:window-y="23"
+   inkscape:window-x="0"
+   inkscape:cy="650.51093"
+   inkscape:cx="823.01264"
+   inkscape:zoom="0.33466309"
+   inkscape:snap-global="true"
+   fit-margin-bottom="0"
+   fit-margin-right="0"
+   fit-margin-left="0"
+   fit-margin-top="0"
+   showgrid="false"
+   id="namedview152"
+   inkscape:window-height="1090"
+   inkscape:window-width="1920"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0"
+   guidetolerance="10"
+   gridtolerance="10"
+   objecttolerance="10"
+   borderopacity="1"
+   inkscape:document-rotation="0"
+   bordercolor="#666666"
+   pagecolor="#ffffff" />
+<style
+   id="style110"
+   type="text/css">
+	.st0{fill:#A5DCE8;}
+	.st1{opacity:0.5;fill:url(#SVGID_1_);}
+	.st2{fill:none;stroke:#01313C;stroke-width:24;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#3FB65E;stroke-width:24;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#3FB65E;stroke-width:22;stroke-miterlimit:10;}
+	.st5{fill:#01313C;}
+	.st6{fill:#3FB65E;}
+	.st7{fill:#FFFFFF;}
+</style>
+<g
+   transform="translate(-16.8,-17.2)"
+   id="g149">
+	<polygon
+   id="polygon112"
+   points="495.3,166.6 345.8,17.2 16.8,17.2 16.8,620.6 495.3,620.6 "
+   class="st0" />
+	<linearGradient
+   y2="377.5217"
+   x2="207.61099"
+   y1="44.049999"
+   x1="483.0062"
+   gradientUnits="userSpaceOnUse"
+   id="SVGID_1_">
+		<stop
+   id="stop114"
+   style="stop-color:#00303C;stop-opacity:0.6"
+   offset="0" />
+		<stop
+   id="stop116"
+   style="stop-color:#00303C;stop-opacity:0.1287"
+   offset="0.5682" />
+	</linearGradient>
+	<polygon
+   style="fill:url(#SVGID_1_)"
+   id="polygon119"
+   points="495.3,166.6 345.8,17.2 16.8,17.2 16.8,620.6 495.3,620.6 "
+   class="st1" />
+	<line
+   id="line121"
+   y2="328.5"
+   x2="404.60001"
+   y1="328.5"
+   x1="204"
+   class="st2" />
+	<line
+   id="line123"
+   y2="328.5"
+   x2="204"
+   y1="328.5"
+   x1="107.5"
+   class="st3" />
+	<line
+   id="line125"
+   y2="249.89999"
+   x2="404.60001"
+   y1="249.89999"
+   x1="107.5"
+   class="st4" />
+	<line
+   id="line127"
+   y2="485.70001"
+   x2="324.10001"
+   y1="485.70001"
+   x1="107.5"
+   class="st2" />
+	<line
+   id="line129"
+   y2="407.10001"
+   x2="404.60001"
+   y1="407.10001"
+   x1="107.5"
+   class="st2" />
+	<g
+   id="g137">
+		<path
+   inkscape:connector-curvature="0"
+   id="path131"
+   d="m 484.1,266.6 -30.7,20.5 c 10.1,29.8 11.3,61.5 4.4,91.3 l 52.1,-34.8 2.3,-1.6 54.5,-36.4 c -30.2,-5 -58.9,-18.2 -82.6,-39 z"
+   class="st5" />
+		<polygon
+   id="polygon133"
+   points="456,224.7 484.1,266.6 453.4,287.1 435.3,260.1 "
+   class="st6" />
+		<path
+   inkscape:connector-curvature="0"
+   id="path135"
+   d="m 662.9,636.3 63.7,-42.5 c 12.5,-8.3 15.9,-25.2 7.5,-37.7 L 566.7,305.6 457.8,378.4 625.1,628.8 c 8.4,12.5 25.3,15.9 37.8,7.5 z"
+   class="st6" />
+	</g>
+	<polygon
+   id="polygon139"
+   points="345.8,166.6 495.3,166.6 345.8,17.2 "
+   class="st6" />
+	<g
+   id="g147">
+		<g
+   id="g145">
+			<path
+   inkscape:connector-curvature="0"
+   id="path141"
+   d="m 125.5,155.9 c 0,-15 10.4,-27.5 24.3,-30.9 v -15.2 c -22.2,3.6 -39.2,22.9 -39.2,46 0,23.2 17,42.5 39.2,46 v -15.2 c -13.9,-3.2 -24.3,-15.7 -24.3,-30.7"
+   class="st7" />
+			<path
+   inkscape:connector-curvature="0"
+   id="path143"
+   d="m 204,155.9 c 0,-23.2 -17,-42.5 -39.2,-46 V 125 c 13.9,3.4 24.3,15.9 24.3,30.9 0,15 -10.4,27.5 -24.3,30.9 V 202 c 22.1,-3.6 39.2,-22.9 39.2,-46.1"
+   class="st7" />
+		</g>
+	</g>
+</g>
+<text
+   transform="translate(-16.8,-17.2)"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:Faktum;-inkscape-font-specification:Faktum;white-space:pre;shape-inside:url(#rect160);fill:#000000;fill-opacity:1;stroke:none;"
+   id="text158"
+   xml:space="preserve" /><text
+   transform="matrix(8.5716307,0,0,8.5716307,4248.8633,1097.5276)"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:1.25;font-family:Faktum;-inkscape-font-specification:'Faktum Bold';white-space:pre;shape-inside:url(#rect166);"
+   id="text164"
+   xml:space="preserve"><tspan
+     sodipodi:role="line"
+     x="-410.00195"
+     y="-80.859375"><tspan>Spectator</tspan></tspan></text></svg>
