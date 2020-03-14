@@ -14,5 +14,6 @@ You will need the following dependencies:
  - [SQLite](https://www.sqlite.org/download.html)
 
 Once you have all these dependencies, you can run `make build` and then `make run`.
-`make build` will create links with the document-viewer, react and react dom. To remove these links, `make unlink` in the `client` folder.
 It will start a server listening to port `8080`.
+
+`make build` will create links with the document-viewer, react and react dom. To remove these links, `make unlink` in the `client` folder.
