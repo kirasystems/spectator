@@ -5,14 +5,16 @@ import { useHistory, useParams } from "react-router-dom";
 import DocumentViewer from "document-viewer";
 import "document-viewer/dist/style.css";
 
-import { Document as DocumentType } from "../../types";
+import { Document as DocumentType, Topic } from "../../types";
 
 type DocumentProps = {
   documents: DocumentType[];
+  socket: WebSocket;
+  topics: Topic[]
 };
 
 const Document = (props: DocumentProps) => {
-  const { documents } = props;
+  const { documents, socket, topics } = props;
 
   const [document, setDocument] = React.useState<any>(null);
   const [annotations, setAnnotations] = React.useState<any>([]);
@@ -30,16 +32,28 @@ const Document = (props: DocumentProps) => {
     fetchDocument();
   }, [id]);
 
+  
   React.useEffect(() => {
     async function fetchAnnotations() {
       let response = await fetch("/document/" + id + "/annotations");
       let anns = await response.json();
-      console.log("Anns:", anns);
       setAnnotations(anns);
     }
 
+    function onMessage(message: MessageEvent) {
+      let data = JSON.parse(message.data);
+      let documentId = id && parseInt(id);
+
+      if (data.type === "annotationsChanged" && data.documentId === documentId) {
+        fetchAnnotations();
+      }
+    }
+
     fetchAnnotations();
-  }, [id]);
+    socket.addEventListener("message", onMessage);
+
+    return () => { socket.removeEventListener("message", onMessage) };
+  }, [socket, id]);
 
   const nextDocumentId = React.useMemo(() => {
     if (!id) return null;
@@ -64,32 +78,49 @@ const Document = (props: DocumentProps) => {
   }, [id, documents]);
 
   const handleAnnotationCreate = React.useCallback((annotation: any) => {
-    // TODO: CHANGE THAT
-    annotation.topicId = 1;
+    annotation.topicId = topics.find((topic) => topic.topic === annotation.topic)?.id
     
     fetch("/document/" + document.id + "/annotations", {
         method: "post",
         body: JSON.stringify(annotation)
       }).then((response: any) => {
+        if (!response.ok) {
+          throw new Error(response.statusText)
+        }
+
         console.log("Annotation created:", response);
       }).catch((error: any) => {
         console.error("Annotation create:", error);
       });
+  }, [document, topics]);
+
+  const handleAnnotationDelete = React.useCallback((annotation: any) => {
+    fetch("/document/" + document.id + "/annotation/" + annotation.annotationId, {
+        method: "delete",
+      }).then((response: any) => {
+        if (!response.ok) {
+          throw new Error(response.statusText)
+        }
+
+        console.log("Annotation deleted:", response);
+      }).catch((error: any) => {
+        console.error("Annotation delete:", error);
+      });
   }, [document]);
 
   return (
-    <div className="Document">
+    <div className="Viewer">
       {document && 
         <DocumentViewer 
           annotations={annotations}
           name={document?.name}
           onAnnotationCreate={handleAnnotationCreate}
-          onAnnotationDelete={() => console.log("Delete")}
+          onAnnotationDelete={handleAnnotationDelete}
           onClose={() => history.push("/")}
           onNextDocument={() => nextDocumentId && history.push("/document/" + nextDocumentId)}
           onPreviousDocument={() => previousDocumentId && history.push("/document/" + previousDocumentId)}
           pages={document?.pages}
-          topics={["a", "b", "c", "d"]}
+          topics={topics.map((topic) => topic.topic)}
         />
       }
     </div>

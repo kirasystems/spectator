@@ -1,4 +1,4 @@
-.Annotation-Label {
+.Document-Viewer .Annotation-Label {
   position: relative;
   display: flex;
   align-items: center;
@@ -8,14 +8,14 @@
   width: 180px;
 }
 
-.Annotation-Label__Dot {
+.Document-Viewer .Annotation-Label__Dot {
   flex: 0 0 8px;
   height: 8px;
   width: 8px;
   border-radius: 100%;
 }
 
-.Annotation-Label__Text {
+.Document-Viewer .Annotation-Label__Text {
   flex: 1 1 auto;
   cursor: pointer;
   font-size: 12px;
@@ -25,11 +25,11 @@
   text-overflow: ellipsis;
 }
 
-.Annotation-Label__Text:hover {
+.Document-Viewer .Annotation-Label__Text:hover {
   color: #12748c;
 }
 
-.Annotation-Label__Delete {
+.Document-Viewer .Annotation-Label__Delete {
   cursor: pointer;
   flex: 0 0 14px;
   padding: 3px;
@@ -37,10 +37,10 @@
   color: rgb(14, 15, 15);
 }
 
-.Annotation-Label__Delete:hover {
+.Document-Viewer .Annotation-Label__Delete:hover {
   color: #dd1c1a;
 }
 
-.Annotation-Label__Delete > svg {
+.Document-Viewer .Annotation-Label__Delete > svg {
   font-size: 14px;
 }

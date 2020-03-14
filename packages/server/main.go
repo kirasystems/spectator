@@ -21,6 +21,7 @@ import (
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"github.com/gorilla/websocket"
 
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/tus/tusd/pkg/filestore"
@@ -63,8 +64,10 @@ type Document struct {
 
 // DocumentSummary will be used for the /documents route
 type DocumentSummary struct {
-	ID   uint   `json:"id"`
-	Name string `json:"name"`
+	ID        uint   `json:"id"`
+	Name      string `json:"name"`
+	Pages     uint   `json:"pages"`
+	Processed bool   `json:"processed"`
 }
 
 // DocumentSummaries represents a collection of DocumentSummary
@@ -87,8 +90,17 @@ type Token struct {
 	BoundingBox    BoundingBox `json:"boundingBox"`
 }
 
-// Tokens represents a collection of DocumentSummary
+// Tokens represents a collection of Token
 type Tokens []Token
+
+// Topic struct represents a type of annotation
+type Topic struct {
+	TopicID uint   `json:"id"`
+	Topic   string `json:"topic"`
+}
+
+// Topics represents a collection of Topic
+type Topics []Topic
 
 func parseTokens(tokenFile string, b *strings.Builder) ([]Token, error) {
 	file, err := os.Open(tokenFile)
@@ -212,55 +224,36 @@ func parsePage(pageFile string, b *strings.Builder, docID, pageID uint, tx *sql.
 	return nil
 }
 
-func insertDocument(pagesPath, documentName string, pageCount uint) error {
+func insertDocumentData(documentID uint, pagesPath string, pageCount uint) error {
 	tx, err := db.Begin()
 	if err != nil {
 		return fmt.Errorf("Cannot make transaction: %w", err)
 	}
 
-	// Create document in DB
-	statement, _ := db.Prepare("INSERT INTO documents (name, pages) VALUES (?, ?);")
+	log.Printf("Adding %d pages to document id %d\n", pageCount, documentID)
+	_, err = tx.Exec("UPDATE documents SET pages = ? WHERE document_id = ?", pageCount, documentID)
 	if err != nil {
 		if rollbackErr := tx.Rollback(); rollbackErr != nil {
 			return fmt.Errorf("Unable to rollback: %w", rollbackErr)
 		}
-		return fmt.Errorf("Unable to prepare insert doc to db: %w", err)
+		return fmt.Errorf("Unable to update doc to db: %w", err)
 	}
-
-	log.Println("Inserting document in the database")
-	result, err := statement.Exec(documentName, pageCount)
-	if err != nil {
-		if rollbackErr := tx.Rollback(); rollbackErr != nil {
-			return fmt.Errorf("Unable to rollback: %w", rollbackErr)
-		}
-		return fmt.Errorf("Unable to insert doc to db: %w", err)
-	}
-
-	docID, _ := result.LastInsertId()
 
 	// Process pages
 	var b strings.Builder
 	for i := uint(0); i < pageCount; i++ {
 		pageFile := fmt.Sprintf("%s/page-%d", pagesPath, i)
-		err = parsePage(pageFile, &b, uint(docID), i+1, tx)
+		err = parsePage(pageFile, &b, documentID, i+1, tx)
 		if err != nil {
 			if rollbackErr := tx.Rollback(); rollbackErr != nil {
-				return fmt.Errorf("unable to rollback: %w", rollbackErr)
+				return fmt.Errorf("Unable to rollback: %w", rollbackErr)
 			}
 			return fmt.Errorf("Unable to parse page: %w", err)
 		}
 	}
 
 	// Finalize document data
-	statement, err = tx.Prepare("UPDATE documents SET text = ? WHERE document_id = ?;")
-	if err != nil {
-		if rollbackErr := tx.Rollback(); rollbackErr != nil {
-			return fmt.Errorf("Unable to rollback: %w", rollbackErr)
-		}
-		return fmt.Errorf("Unable to prepare update to document: %w", err)
-	}
-
-	_, err = statement.Exec(b.String(), docID)
+	_, err = tx.Exec("UPDATE documents SET text = ?, processed = TRUE WHERE document_id = ?", b.String(), documentID)
 	if err != nil {
 		if rollbackErr := tx.Rollback(); rollbackErr != nil {
 			return fmt.Errorf("Unable to rollback: %w", rollbackErr)
@@ -268,22 +261,32 @@ func insertDocument(pagesPath, documentName string, pageCount uint) error {
 		return fmt.Errorf("Unable to update db document: %w", err)
 	}
 
-	err = tx.Commit()
-	if err != nil {
-		return fmt.Errorf("Unable to commit transaction: %w", err)
-	}
+	tx.Commit()
 
 	return nil
 }
 
 func processDocument(fileID, fileName string) error {
-
 	filePath := uploadPath + "/" + fileID
 	tmpPath := filePath + "-tmp"
 
+	log.Printf("Adding document %s in the database", fileName)
+
+	res, err := db.Exec("INSERT INTO documents (name) VALUES (?)", fileName)
+	if err != nil {
+		return fmt.Errorf("Unable to insert document: %v", err)
+	}
+
+	broadcast(`{"type":"documentsChanged"}`)
+
+	documentID, err := res.LastInsertId()
+	if err != nil {
+		return fmt.Errorf("Unable to get the ID of the inserted document: %v", err)
+	}
+
 	log.Printf("Creating temporary folder %s\n", tmpPath)
 
-	err := os.MkdirAll(tmpPath, 0755)
+	err = os.MkdirAll(tmpPath, 0755)
 
 	if err != nil {
 		return fmt.Errorf("Unable to create temporary folder: %v", err)
@@ -341,16 +344,18 @@ func processDocument(fileID, fileName string) error {
 		pageCount++
 	}
 
-	err = insertDocument(tmpPath, fileName, pageCount)
+	err = insertDocumentData(uint(documentID), tmpPath, pageCount)
 	if err != nil {
 		return fmt.Errorf("Error insert document: %v", err)
 	}
 
+	broadcast(`{"type":"documentsChanged"}`)
+
 	return nil
 }
 
-func documentsHandler(w http.ResponseWriter, r *http.Request) {
-	rows, err := db.Query("SELECT document_id, name FROM documents")
+func getDocumentsHandler(w http.ResponseWriter, r *http.Request) {
+	rows, err := db.Query("SELECT document_id, name, COALESCE(pages, 0) AS pages, processed FROM documents")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -362,7 +367,7 @@ func documentsHandler(w http.ResponseWriter, r *http.Request) {
 	for rows.Next() {
 		var documentSummary DocumentSummary
 
-		err = rows.Scan(&documentSummary.ID, &documentSummary.Name)
+		err = rows.Scan(&documentSummary.ID, &documentSummary.Name, &documentSummary.Pages, &documentSummary.Processed)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
@@ -380,9 +385,9 @@ func documentsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func documentHandler(w http.ResponseWriter, r *http.Request) {
+func getDocumentHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	documentID := params["documentId"]
+	documentID, _ := strconv.Atoi(params["documentId"])
 
 	var document Document
 
@@ -392,7 +397,7 @@ func documentHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err := db.Query("SELECT page, height, width FROM document_pages ORDER BY page")
+	rows, err := db.Query("SELECT page, height, width FROM document_pages WHERE document_id = ? ORDER BY page", documentID)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -411,8 +416,8 @@ func documentHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		page.ImageURL = fmt.Sprintf("/document/%s/page/%d/image", documentID, pageNumber)
-		page.TokensURL = fmt.Sprintf("/document/%s/page/%d/tokens", documentID, pageNumber)
+		page.ImageURL = fmt.Sprintf("/document/%d/page/%d/image", documentID, pageNumber)
+		page.TokensURL = fmt.Sprintf("/document/%d/page/%d/tokens", documentID, pageNumber)
 
 		pages = append(pages, page)
 	}
@@ -428,7 +433,23 @@ func documentHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func annotationHandler(w http.ResponseWriter, r *http.Request) {
+func deleteDocumentHandler(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	documentID, _ := strconv.Atoi(params["documentId"])
+
+	_, err := db.Exec("DELETE FROM documents WHERE document_id = ?", documentID)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+
+	broadcast(`{"type":"documentsChanged"}`)
+}
+
+func postAnnotationsHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	documentID, _ := strconv.Atoi(params["documentId"])
 
@@ -446,9 +467,6 @@ func annotationHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-
-	log.Printf("Annotation %d %d", annotation.CharacterStart, annotation.CharacterEnd)
-
 	_, err = db.Exec(`INSERT INTO annotations (document_id, character_start, character_end, page_start, page_end, text, top_px, left_px, topic_id)
 								    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		documentID, annotation.CharacterStart, annotation.CharacterEnd, annotation.PageStart, annotation.PageEnd,
@@ -460,9 +478,11 @@ func annotationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
+
+	broadcast(fmt.Sprintf(`{"type":"annotationsChanged", "documentId":%d}`, documentID))
 }
 
-func annotationsHandler(w http.ResponseWriter, r *http.Request) {
+func getAnnotationsHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	documentID, _ := strconv.Atoi(params["documentId"])
 
@@ -501,7 +521,24 @@ func annotationsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func tokensHandler(w http.ResponseWriter, r *http.Request) {
+func deleteAnnotationHandler(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	documentID, _ := strconv.Atoi(params["documentId"])
+	annotationID, _ := strconv.Atoi(params["annotationId"])
+
+	_, err := db.Exec("DELETE FROM annotations WHERE document_id = ? AND annotation_id = ?", documentID, annotationID)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+
+	broadcast(fmt.Sprintf(`{"type":"annotationsChanged", "documentId":%d}`, documentID))
+}
+
+func getTokensHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	documentID, _ := strconv.Atoi(params["documentId"])
 	pageNumber, _ := strconv.Atoi(params["pageNumber"])
@@ -522,7 +559,7 @@ func tokensHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func imageHandler(w http.ResponseWriter, r *http.Request) {
+func getImageHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	documentID, _ := strconv.Atoi(params["documentId"])
 	pageNumber, _ := strconv.Atoi(params["pageNumber"])
@@ -534,8 +571,6 @@ func imageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ioutil.WriteFile("test.png", imageBlob, 0644)
-
 	w.Header().Set("Content-Type", "image/png")
 	w.WriteHeader(http.StatusOK)
 	_, err = w.Write(imageBlob)
@@ -543,6 +578,100 @@ func imageHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+}
+
+func getTopicsHandler(w http.ResponseWriter, r *http.Request) {
+	rows, err := db.Query("SELECT topic_id, topic FROM topics")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	defer rows.Close()
+
+	topics := Topics{}
+
+	for rows.Next() {
+		var topic Topic
+
+		err = rows.Scan(&topic.TopicID, &topic.Topic)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		topics = append(topics, topic)
+	}
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	err = json.NewEncoder(w).Encode(topics)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+}
+
+func postTopicsHandler(w http.ResponseWriter, r *http.Request) {
+	var topic Topic
+	err := json.NewDecoder(r.Body).Decode(&topic)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	_, err = db.Exec("INSERT INTO topics (topic) VALUES (?)", topic.Topic)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+
+	broadcast(`{"type":"topicsChanged"}`)
+}
+
+func deleteTopicHandler(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	topicID, _ := strconv.Atoi(params["topicId"])
+
+	_, err := db.Exec("DELETE FROM topics WHERE topic_id = ?", topicID)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+
+	broadcast(`{"type":"topicsChanged"}`)
+}
+
+var clients = make(map[*websocket.Conn]bool)
+var upgrader = websocket.Upgrader{}
+
+func broadcast(jsonData string) error {
+	for client := range clients {
+		err := client.WriteMessage(websocket.TextMessage, []byte(jsonData))
+		if err != nil {
+			log.Printf("Websocket error: %s", err)
+			client.Close()
+			delete(clients, client)
+		}
+	}
+
+	return nil
+}
+
+func webSocketHandler(w http.ResponseWriter, r *http.Request) {
+	conn, err := upgrader.Upgrade(w, r, nil)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	clients[conn] = true
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -606,16 +735,24 @@ func main() {
 	r := mux.NewRouter()
 	r.Use(loggingMiddleware)
 
-	r.HandleFunc("/documents", documentsHandler).Methods(http.MethodGet)
-	r.HandleFunc("/document/{documentId}", documentHandler).Methods(http.MethodGet)
-	r.HandleFunc("/document/{documentId}/annotations", annotationsHandler).Methods(http.MethodGet)
-	r.HandleFunc("/document/{documentId}/annotations", annotationHandler).Methods(http.MethodPost)
-	r.HandleFunc("/document/{documentId}/page/{pageNumber}/tokens", tokensHandler).Methods(http.MethodGet)
-	r.HandleFunc("/document/{documentId}/page/{pageNumber}/image", imageHandler).Methods(http.MethodGet)
+	r.HandleFunc("/documents", getDocumentsHandler).Methods(http.MethodGet)
+	r.HandleFunc("/document/{documentId}", getDocumentHandler).Methods(http.MethodGet)
+	r.HandleFunc("/document/{documentId}", deleteDocumentHandler).Methods(http.MethodDelete)
+	r.HandleFunc("/document/{documentId}/annotations", getAnnotationsHandler).Methods(http.MethodGet)
+	r.HandleFunc("/document/{documentId}/annotations", postAnnotationsHandler).Methods(http.MethodPost)
+	r.HandleFunc("/document/{documentId}/annotation/{annotationId}", deleteAnnotationHandler).Methods(http.MethodDelete)
+	r.HandleFunc("/document/{documentId}/page/{pageNumber}/tokens", getTokensHandler).Methods(http.MethodGet)
+	r.HandleFunc("/document/{documentId}/page/{pageNumber}/image", getImageHandler).Methods(http.MethodGet)
+
+	r.HandleFunc("/topics", getTopicsHandler).Methods(http.MethodGet)
+	r.HandleFunc("/topics", postTopicsHandler).Methods(http.MethodPost)
+	r.HandleFunc("/topic/{topicId}", deleteTopicHandler).Methods(http.MethodDelete)
+
+	r.HandleFunc("/ws", webSocketHandler).Methods(http.MethodGet)
 
 	r.HandleFunc("/index.html", indexHandler).Methods(http.MethodGet)
 	r.PathPrefix("/files/").Handler(http.StripPrefix("/files/", uploadHandler))
-	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./client/build/static")))).Methods(http.MethodGet)
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./client/build/"))).Methods(http.MethodGet)
 	r.HandleFunc("/", indexHandler).Methods(http.MethodGet)
 
 	r.NotFoundHandler = r.NewRoute().HandlerFunc(http.NotFound).GetHandler()

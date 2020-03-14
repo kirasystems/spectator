@@ -1,9 +1,9 @@
-.Annotations {
+.Document-Viewer .Annotations {
   position: relative;
   flex: 0 0 auto;
 }
 
-.Annotations-Group__More {
+.Document-Viewer .Annotations-Group__More {
   background: #868b90;
   box-shadow: 0 1px 3px rgba(14, 15, 15, 0.3);
   cursor: pointer;

@@ -15,8 +15,137 @@ html,
 body,
 .App,
 #root,
-.Document {
+.Viewer {
   width: 100%;
   height: 100%;
   margin: 0;
+}
+
+.App {
+  display: flex;
+}
+
+.Logo {
+  margin: 24px 43px 0px 43px;
+}
+
+.Title {
+  display: block;
+  font-size: 16px;
+  text-align: center;
+}
+
+.Nav {
+  flex: 0 0 200px;
+  background: #ecf0f1;
+}
+
+.Nav__Links {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0 0;
+}
+
+.Nav__Link {
+  display: block;
+  padding: 12px 18px;
+  color: black;
+  text-decoration: none;
+}
+
+.Nav__Link--active,
+.Nav__Link:hover {
+  background: #dbe2e8;
+}
+
+.Page {
+  margin: 24px;
+  flex: 1 1 0;
+  overflow: auto;
+}
+
+.Page__Title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.Page__Header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 624px;
+}
+
+.Documents,
+.Topics {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Document,
+.Topic {
+  display: flex;
+  align-items: center;
+  background: #f5f7f9;
+  color: black;
+  text-decoration: none;
+  margin: 12px 0;
+  padding: 12px;
+  width: 600px;
+  overflow: hidden;
+}
+
+.Document--Disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.Document__Name,
+.Topic__Name {
+  margin: 0;
+  max-width: 500px;
+}
+
+.Document__Delete,
+.Topic__Delete {
+  margin-left: auto;
+  background: #d63031;
+  border: none;
+  color: white;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+
+.Document h3,
+.Document p,
+.Topic p {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.Document p {
+  font-style: italic;
+}
+
+.Import-Button {
+  background: #ecf0f1;
+  border: none;
+  margin-left: auto;
+  padding: 6px 12px;
+  font-size: 16px;
+  border-radius: 3px;
+}
+
+.Topic-Button {
+  background: #ecf0f1;
+  border: none;
+  margin-left: 12px;
+  padding: 3px 12px;
+  border-radius: 3px;
 }

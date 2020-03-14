@@ -47,22 +47,60 @@ const Documents = (props: DocumentsProps) => {
     setDashboardVisible(false);
   }, []);
 
-  return (
-    <div className="Home">
-      <button onClick={handleDashboardOpen}>Import</button>
+  const handleDocumentDelete = React.useCallback((documentId: number) => {
+    fetch("/document/" + documentId, {
+      method: "delete",
+    }).then((response: any) => {
+      if (!response.ok) {
+        throw new Error(response.statusText)
+      }
 
+      console.log("Document deleted:", response);
+    }).catch((error: any) => {
+      console.error("Document delete:", error);
+    });
+  }, []);
+
+  return (
+    <div className="Page">
+      <div className="Page__Header">
+        <h1 className="Page__Title">Documents</h1>
+        <button id="uppy-select-files" className="Import-Button" onClick={handleDashboardOpen}>Import</button>
+      </div>
+      
       {uppy && <DashboardModal 
                 uppy={uppy}
                 closeModalOnClickOutside={true}
                 open={dashboardVisible}
-                onRequestClose={handleDashboardClose} />}
+                onRequestClose={handleDashboardClose}/>}
 
-      {<ol className="Document-List">
+      {documents.length === 0 && 
+        <p>No documents...</p>}
+
+      {<ol className="Documents">
         {documents.map((document: DocumentType) => (
-          <li
-            key={document.id}
-            className="Document-Item">
-            <Link to={`/document/${document.id}`}>{document.name}</Link>
+          <li key={document.id}>
+            <Link to={`/document/${document.id}`} className={`Document${document.processed ? "" : " Document--Disabled"}`}>
+              <div className="Document__Name">
+                <h3>{document.name}</h3>
+                {document.processed ?
+                  <p>{document.pages + " pages"}</p> :
+                  <p>Processing...</p>}
+              </div>
+              <button
+                disabled={!document.processed}
+                className="Document__Delete"
+                onClick={(event: React.MouseEvent) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+
+                  if (window.confirm('Are you sure you want to delete this document?')) {
+                    handleDocumentDelete(document.id);
+                  }
+                }}>
+                Delete
+              </button>
+            </Link>
           </li>
         ))}
       </ol>}

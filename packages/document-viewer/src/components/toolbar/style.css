@@ -1,4 +1,4 @@
-.Toolbar {
+.Document-Viewer .Toolbar {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
@@ -9,12 +9,12 @@
   padding: 0 12px;
 }
 
-.Toolbar__Pages {
+.Document-Viewer .Toolbar__Pages {
   display: flex;
   align-items: center;
 }
 
-.Toolbar__Input {
+.Document-Viewer .Toolbar__Input {
   width: 60px;
   height: 30px;
   padding: 0;
@@ -27,21 +27,21 @@
   font-weight: 600;
 }
 
-.Toolbar__Pages span {
+.Document-Viewer .Toolbar__Pages span {
   margin: 0 12px;
   font-weight: 600;
 }
 
-.Toolbar__Modes {
+.Document-Viewer .Toolbar__Modes {
   width: 200px;
 }
 
-.Toolbar__Zoom {
+.Document-Viewer .Toolbar__Zoom {
   width: 150px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+.Document-Viewer input[type=number]::-webkit-inner-spin-button, 
+.Document-Viewer input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;

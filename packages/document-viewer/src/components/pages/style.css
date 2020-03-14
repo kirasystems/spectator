@@ -1,4 +1,4 @@
-.Pages {
+.Document-Viewer .Pages {
   position: relative;
 
   list-style: none;
@@ -9,6 +9,6 @@
   background: rgb(245, 247, 249);
 }
 
-.Pages * {
+.Document-Viewer .Pages * {
   user-select: none;
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 741.6 648.5" style="enable-background:new 0 0 741.6 648.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#A5DCE8;}
+	.st1{opacity:0.5;fill:url(#SVGID_1_);}
+	.st2{fill:none;stroke:#01313C;stroke-width:24;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#3FB65E;stroke-width:24;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#3FB65E;stroke-width:22;stroke-miterlimit:10;}
+	.st5{fill:#01313C;}
+	.st6{fill:#3FB65E;}
+	.st7{fill:#FFFFFF;}
+</style>
+<g>
+	<polygon class="st0" points="345.8,17.2 16.8,17.2 16.8,620.6 495.3,620.6 495.3,166.6 	"/>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="483.0062" y1="44.05" x2="207.611" y2="377.5217">
+		<stop  offset="0" style="stop-color:#00303C;stop-opacity:0.6"/>
+		<stop  offset="0.5682" style="stop-color:#00303C;stop-opacity:0.1287"/>
+	</linearGradient>
+	<polygon class="st1" points="345.8,17.2 16.8,17.2 16.8,620.6 495.3,620.6 495.3,166.6 	"/>
+	<line class="st2" x1="204" y1="328.5" x2="404.6" y2="328.5"/>
+	<line class="st3" x1="107.5" y1="328.5" x2="204" y2="328.5"/>
+	<line class="st4" x1="107.5" y1="249.9" x2="404.6" y2="249.9"/>
+	<line class="st2" x1="107.5" y1="485.7" x2="324.1" y2="485.7"/>
+	<line class="st2" x1="107.5" y1="407.1" x2="404.6" y2="407.1"/>
+	<g>
+		<path class="st5" d="M484.1,266.6l-30.7,20.5c10.1,29.8,11.3,61.5,4.4,91.3l52.1-34.8l2.3-1.6l54.5-36.4
+			C536.5,300.6,507.8,287.4,484.1,266.6z"/>
+		<polygon class="st6" points="435.3,260.1 456,224.7 484.1,266.6 453.4,287.1 		"/>
+		<path class="st6" d="M662.9,636.3l63.7-42.5c12.5-8.3,15.9-25.2,7.5-37.7L566.7,305.6l-108.9,72.8l167.3,250.4
+			C633.5,641.3,650.4,644.7,662.9,636.3z"/>
+	</g>
+	<polygon class="st6" points="345.8,166.6 495.3,166.6 345.8,17.2 	"/>
+	<g>
+		<g>
+			<path class="st7" d="M125.5,155.9c0-15,10.4-27.5,24.3-30.9v-15.2c-22.2,3.6-39.2,22.9-39.2,46c0,23.2,17,42.5,39.2,46v-15.2
+				C135.9,183.4,125.5,170.9,125.5,155.9"/>
+			<path class="st7" d="M204,155.9c0-23.2-17-42.5-39.2-46V125c13.9,3.4,24.3,15.9,24.3,30.9c0,15-10.4,27.5-24.3,30.9v15.2
+				C186.9,198.4,204,179.1,204,155.9"/>
+		</g>
+	</g>
+</g>
+</svg>

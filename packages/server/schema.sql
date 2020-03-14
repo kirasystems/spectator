@@ -1,12 +1,14 @@
 --
--- File generated with SQLiteStudio v3.2.1 on sam. févr. 22 13:09:18 2020
+-- File generated with SQLiteStudio v3.2.1 on sam. févr. 29 12:01:49 2020
 --
 -- Text encoding used: UTF-8
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
+
 -- Table: annotations
 DROP TABLE IF EXISTS annotations;
+
 CREATE TABLE annotations (
     annotation_id   INTEGER PRIMARY KEY AUTOINCREMENT,
     document_id             REFERENCES documents (document_id) ON DELETE CASCADE
@@ -21,8 +23,11 @@ CREATE TABLE annotations (
     topic_id                REFERENCES topics (topic_id) ON DELETE CASCADE
                             NOT NULL
 );
+
+
 -- Table: document_pages
 DROP TABLE IF EXISTS document_pages;
+
 CREATE TABLE document_pages (
     document_page_id INTEGER PRIMARY KEY AUTOINCREMENT,
     document_id              REFERENCES documents (document_id) ON DELETE CASCADE
@@ -34,20 +39,29 @@ CREATE TABLE document_pages (
     image_format     STRING  NOT NULL,
     tokens           BLOB    NOT NULL
 );
+
+
 -- Table: documents
 DROP TABLE IF EXISTS documents;
+
 CREATE TABLE documents (
     document_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name        TEXT,
+    name        TEXT    NOT NULL,
     pages       INTEGER,
-    text        TEXT
+    text        TEXT,
+    processed   BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+
 -- Table: topics
 DROP TABLE IF EXISTS topics;
+
 CREATE TABLE topics (
     topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
     topic    TEXT    NOT NULL
                      UNIQUE
 );
+
+
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;

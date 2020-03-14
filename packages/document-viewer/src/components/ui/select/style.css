@@ -1,8 +1,8 @@
-.Select {
+.Document-Viewer .Select {
   position: relative;
 }
 
-.Select select {
+.Document-Viewer .Select select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -16,7 +16,7 @@
   height: 30px;
 }
 
-.Select svg {
+.Document-Viewer .Select svg {
   position: absolute;
   right: 3px;
   top: 3px;

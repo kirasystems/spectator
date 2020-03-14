@@ -1,4 +1,4 @@
-.Navbar {
+.Document-Viewer .Navbar {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
@@ -8,7 +8,7 @@
   height: 40px;
 }
 
-.Navbar__Title {
+.Document-Viewer .Navbar__Title {
   margin: 0;
   font-size: 16px;
   white-space: nowrap;
@@ -16,7 +16,7 @@
   text-overflow: ellipsis;
 }
 
-.NavBar__Actions {
+.Document-Viewer .NavBar__Actions {
   margin-left: auto;
   display: flex;
   flex-flow: row nowrap;
