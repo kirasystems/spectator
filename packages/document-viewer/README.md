@@ -92,3 +92,10 @@ The document viewer loads the original image of the pages and overlays an R-tree
 ### A word on annotation colours
 
 To have a maximal number of distinct colours (12 colours), we used a [generator](http://colorbrewer.org). As we don't want the highlight to block the text, we reduced the opacity of the colours and we used the css property `mix-blend-mode` to `multiply`. It still doesn't prevent a user from massively highlighting the text to a point you can't see the text well.
+
+## Features that are left out (for now)
+
+ - Search within and between documents.
+ - Copying text.
+ - Nuanced behaviour tracking.
+ - Mobile/Tablet support.
