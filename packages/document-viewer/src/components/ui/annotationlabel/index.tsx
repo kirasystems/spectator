@@ -11,17 +11,12 @@ type AnnotationLabelProps = {
   topic: string;
 };
 
-const AnnotationLabel = (
-  props: AnnotationLabelProps & React.HTMLAttributes<HTMLDivElement>
-) => {
+const AnnotationLabel = (props: AnnotationLabelProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { className, onClick, onDelete, topic, ...rest } = props;
 
   return (
     <div className={`Annotation-Label ${className || ""}`} {...rest}>
-      <span
-        className="Annotation-Label__Dot"
-        style={{ background: topicToColor(topic) }}
-      ></span>
+      <span className="Annotation-Label__Dot" style={{ background: topicToColor(topic) }}></span>
       <span className="Annotation-Label__Text" onClick={onClick}>
         {topic}
       </span>

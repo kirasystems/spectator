@@ -10,7 +10,7 @@ const ANNOTATION_COLORS: string[] = [
   "#cab2d6", // light-purple
   "#6a3d9a", // purple
   "#ff9", // beige
-  "#b15928" // brown
+  "#b15928", // brown
 ];
 
 function hashString(str: string): number {
@@ -21,7 +21,5 @@ function hashString(str: string): number {
 }
 
 export function topicToColor(topic: string): string {
-  return ANNOTATION_COLORS[
-    Math.abs(hashString(topic) % ANNOTATION_COLORS.length)
-  ];
+  return ANNOTATION_COLORS[Math.abs(hashString(topic) % ANNOTATION_COLORS.length)];
 }

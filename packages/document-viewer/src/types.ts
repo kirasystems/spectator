@@ -29,8 +29,8 @@ export type ScrollPosition = [number, number]; // [x, y] | null
 
 export type MouseSelection = [[number, number], [number, number]] | null;
 
-export type Selection = { 
-  index: number; 
+export type Selection = {
+  index: number;
   page: number;
   token: Token;
 } | null;

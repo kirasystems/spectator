@@ -12,7 +12,7 @@ import {
   Page as PageType,
   PageSelection,
   Selection,
-  ScrollPosition
+  ScrollPosition,
 } from "../../types";
 
 import Topics from "../topics/index";
@@ -64,13 +64,13 @@ function selectionPerPage(
     indexStart: selectionStart.index,
     indexEnd: selectionEnd.index,
     pageStart: selectionStart.page,
-    pageEnd: selectionEnd.page
+    pageEnd: selectionEnd.page,
   };
 
   for (let i = selection.pageStart; i <= selection.pageEnd; i++) {
     let pageSelection = {
       indexStart: selection.indexStart,
-      indexEnd: selection.indexEnd
+      indexEnd: selection.indexEnd,
     };
 
     if (i === selection.pageStart && i !== selection.pageEnd) {
@@ -127,10 +127,7 @@ export interface PagesHandle {
   scrollToAnnotation(annotationIndex: number): void;
 }
 
-const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
-  props,
-  ref
-) => {
+const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (props, ref) => {
   const {
     annotations,
     currentPage,
@@ -145,7 +142,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
     onPageChange,
     pages,
     topics,
-    zoom
+    zoom,
   } = props;
 
   const [mouseStart, setMouseStart] = React.useState<MousePosition>(null);
@@ -160,35 +157,31 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
 
   const pagesEl = React.useRef<HTMLOListElement>(null);
 
-  const pageAnnotations = React.useMemo(
-    () => annotationsPerPage(annotations, pages.length),
-    [annotations, pages.length]
-  );
+  const pageAnnotations = React.useMemo(() => annotationsPerPage(annotations, pages.length), [
+    annotations,
+    pages.length,
+  ]);
 
-  const pageSelection = React.useMemo(
-    () => selectionPerPage(selectionStart, selectionEnd),
-    [selectionStart, selectionEnd, pages.length]
-  );
+  const pageSelection = React.useMemo(() => selectionPerPage(selectionStart, selectionEnd), [
+    selectionStart,
+    selectionEnd,
+  ]);
 
   const mouseSelection = React.useMemo((): MouseSelection => {
     if (mouseStart && mouseEnd) {
-      return mouseStart[1] < mouseEnd[1]
-        ? [mouseStart, mouseEnd]
-        : [mouseEnd, mouseStart];
+      return mouseStart[1] < mouseEnd[1] ? [mouseStart, mouseEnd] : [mouseEnd, mouseStart];
     } else {
       return null;
     }
   }, [mouseStart, mouseEnd]);
 
-  const mousePosition = (
-    event: MouseEvent | React.MouseEvent
-  ): MousePosition => {
+  const mousePosition = (event: MouseEvent | React.MouseEvent): MousePosition => {
     if (pagesEl && pagesEl.current) {
       let pagesBCR = pagesEl.current.getBoundingClientRect();
 
       return [
         event.clientX - pagesBCR.left + pagesEl.current.scrollLeft,
-        event.clientY - pagesBCR.top + pagesEl.current.scrollTop
+        event.clientY - pagesBCR.top + pagesEl.current.scrollTop,
       ];
     }
 
@@ -198,7 +191,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
   const handleMouseMove = React.useCallback(
     (event: MouseEvent) => {
       let newMouseEnd = mousePosition(event);
-      
+
       if (!isEqual(mouseEnd, newMouseEnd)) {
         setMouseEnd(newMouseEnd);
       }
@@ -218,7 +211,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
         // clicked something else than the main button
         return;
       }
-      
+
       // Return if the user selected a topic
       let targetElement = event.target as Element;
       if (targetElement.matches(".Topics, .Topics *")) {
@@ -232,7 +225,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
       if (event.shiftKey && mouseStart) {
         setMouseEnd(position);
         return;
-      }      
+      }
 
       // Reset selection
       setSelectionStart(null);
@@ -248,14 +241,11 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
     [handleMouseMove, handleMouseUp, mouseStart]
   );
 
-  const handleClick = React.useCallback(
-    () => {
-      if (navigationMode === NavigationModes.Annotation) return;
+  const handleClick = React.useCallback(() => {
+    if (navigationMode === NavigationModes.Annotation) return;
 
-      onFocusingAnnotationChange(false);
-    },
-    [navigationMode, onFocusingAnnotationChange]
-  );
+    onFocusingAnnotationChange(false);
+  }, [navigationMode, onFocusingAnnotationChange]);
 
   const handleSelectionStart = React.useCallback(
     (selection: Selection) => {
@@ -281,7 +271,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
     onPageChange(pageInView(pagesEl.current));
 
     let newScrollLeft = pagesEl.current.scrollLeft;
-    let newScrollTop  = pagesEl.current.scrollTop;
+    let newScrollTop = pagesEl.current.scrollTop;
 
     // If user is selecting and scrolling, it won't send a new MouseMove event
     // so we need to adjust the MousePosition based on the delta of the scroll
@@ -289,13 +279,19 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
       let [mouseX, mouseY] = mouseEnd || mouseStart;
       let [scrollLeft, scrollTop] = scrollPosition;
 
-      setMouseEnd([mouseX + (newScrollLeft - scrollLeft),
-                   mouseY + (newScrollTop - scrollTop)]);      
+      setMouseEnd([mouseX + (newScrollLeft - scrollLeft), mouseY + (newScrollTop - scrollTop)]);
     }
 
     setScrollPosition([newScrollLeft, newScrollTop]);
-    
-  }, [mouseEnd, mouseStart, onPageChange, scrollPosition, selecting, setMouseEnd, setScrollPosition]);
+  }, [
+    mouseEnd,
+    mouseStart,
+    onPageChange,
+    scrollPosition,
+    selecting,
+    setMouseEnd,
+    setScrollPosition,
+  ]);
 
   const handleAnnotation = React.useCallback(
     (topic: string) => {
@@ -308,7 +304,7 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
         pageEnd: selectionEnd.page,
         top: selectionStart.token.boundingBox.top,
         left: selectionStart.token.boundingBox.left,
-        topic: topic
+        topic: topic,
       });
 
       // Clear mouse and selection
@@ -329,9 +325,10 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
       const pageBCR = pageEl.getBoundingClientRect();
 
       setScrolling(true);
-      smoothScroll(pagesEl.current, 
-        { endY: pageBCR.top - pagesBCR.top + pagesEl.current.scrollTop}, 
-        200, 
+      smoothScroll(
+        pagesEl.current,
+        { endY: pageBCR.top - pagesBCR.top + pagesEl.current.scrollTop },
+        200,
         () => setScrolling(false)
       );
     },
@@ -349,19 +346,17 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
       const pageX = pageBCR.left - pagesBCR.left + pagesEl.current.scrollLeft;
       const pageY = pageBCR.top - pagesBCR.top + pagesEl.current.scrollTop;
 
-      const annotationX =
-        annotation.left * (pageBCR.width / page.originalWidth);
-      const annotationY =
-        annotation.top * (pageBCR.height / page.originalHeight);
+      const annotationX = annotation.left * (pageBCR.width / page.originalWidth);
+      const annotationY = annotation.top * (pageBCR.height / page.originalHeight);
 
       setScrolling(true);
-      smoothScroll(pagesEl.current, 
-        {endX: pageX + annotationX - 20,
-         endY: pageY + annotationY - 20},
+      smoothScroll(
+        pagesEl.current,
+        { endX: pageX + annotationX - 20, endY: pageY + annotationY - 20 },
         200,
         () => setScrolling(false)
       );
-    }
+    },
   }));
 
   return (
@@ -372,31 +367,33 @@ const Pages: React.RefForwardingComponent<PagesHandle, PagesProps> = (
       onClick={handleClick}
       onScroll={handleScroll}
     >
-      {pages.map(
-        (page: PageType, index: number) => (
-            <Page
-              key={index}
-              annotations={pageAnnotations.get(index + 1) ?? []}
-              focusedAnnotationIndex={focusedAnnotationIndex}
-              focusingAnnotation={focusingAnnotation}
-              imageURL={page.imageURL}
-              load={!scrolling && (index + 1) >= (currentPage - lazyLoadingWindow) && (index + 1) <= (currentPage + lazyLoadingWindow)}
-              onAnnotationDelete={onAnnotationDelete}
-              onFocusedAnnotationIndexChange={onFocusedAnnotationIndexChange}
-              onFocusingAnnotationChange={onFocusingAnnotationChange}
-              onSelectionStart={handleSelectionStart}
-              onSelectionEnd={handleSelectionEnd}
-              originalPageHeight={page.originalHeight}
-              originalPageWidth={page.originalWidth}
-              pageNumber={index + 1}
-              mouseSelection={mouseSelection}
-              selection={pageSelection.get(index + 1) || null}
-              tokensURL={page.tokensURL}
-              zoom={zoom}/>)
-      )}
-      {selectionStart && selectionEnd && (
-        <Topics topics={topics} onAnnotation={handleAnnotation} />
-      )}
+      {pages.map((page: PageType, index: number) => (
+        <Page
+          key={index}
+          annotations={pageAnnotations.get(index + 1) ?? []}
+          focusedAnnotationIndex={focusedAnnotationIndex}
+          focusingAnnotation={focusingAnnotation}
+          imageURL={page.imageURL}
+          load={
+            !scrolling &&
+            index + 1 >= currentPage - lazyLoadingWindow &&
+            index + 1 <= currentPage + lazyLoadingWindow
+          }
+          onAnnotationDelete={onAnnotationDelete}
+          onFocusedAnnotationIndexChange={onFocusedAnnotationIndexChange}
+          onFocusingAnnotationChange={onFocusingAnnotationChange}
+          onSelectionStart={handleSelectionStart}
+          onSelectionEnd={handleSelectionEnd}
+          originalPageHeight={page.originalHeight}
+          originalPageWidth={page.originalWidth}
+          pageNumber={index + 1}
+          mouseSelection={mouseSelection}
+          selection={pageSelection.get(index + 1) || null}
+          tokensURL={page.tokensURL}
+          zoom={zoom}
+        />
+      ))}
+      {selectionStart && selectionEnd && <Topics topics={topics} onAnnotation={handleAnnotation} />}
     </ol>
   );
 };

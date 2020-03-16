@@ -2,11 +2,7 @@ import React from "react";
 
 import NavBar from "../../components/navbar/index";
 import Pages, { PagesHandle } from "../../components/pages/index";
-import {
-  DEFAULT_NAVIGATION_MODE,
-  DEFAULT_ZOOM,
-  ToolBar
-} from "../../components/toolbar/index";
+import { DEFAULT_NAVIGATION_MODE, DEFAULT_ZOOM, ToolBar } from "../../components/toolbar/index";
 
 import { NavigationModes } from "../../enums";
 import { Annotation, IndexedAnnotation, Page } from "../../types";
@@ -29,19 +25,24 @@ type DocumentViewerProps = {
 };
 
 const DocumentViewer = (props: DocumentViewerProps) => {
-  const { annotations, lazyLoadingWindow, name, onAnnotationCreate, onAnnotationDelete, onClose, onNextDocument, onPreviousDocument, pages, topics } = props;
+  const {
+    annotations,
+    lazyLoadingWindow,
+    name,
+    onAnnotationCreate,
+    onAnnotationDelete,
+    onClose,
+    onNextDocument,
+    onPreviousDocument,
+    pages,
+    topics,
+  } = props;
 
-  const [navigationMode, setNavigationMode] = React.useState(
-    DEFAULT_NAVIGATION_MODE
-  );
+  const [navigationMode, setNavigationMode] = React.useState(DEFAULT_NAVIGATION_MODE);
 
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [focusingAnnotation, setFocusingAnnotation] = React.useState<boolean>(
-    false
-  );
-  const [focusedAnnotationIndex, setFocusedAnnotationIndex] = React.useState<
-    number
-  >(1);
+  const [focusingAnnotation, setFocusingAnnotation] = React.useState<boolean>(false);
+  const [focusedAnnotationIndex, setFocusedAnnotationIndex] = React.useState<number>(1);
 
   const [zoom, setZoom] = React.useState(DEFAULT_ZOOM);
 
@@ -58,12 +59,10 @@ const DocumentViewer = (props: DocumentViewerProps) => {
   };
 
   const indexAnnotations = (annotations: Annotation[]) => {
-    return sortAnnotations(annotations).map(
-      (annotation: Annotation, index: number) => {
-        return { ...annotation, _index: index + 1 };
-      }
-    );
-  }
+    return sortAnnotations(annotations).map((annotation: Annotation, index: number) => {
+      return { ...annotation, _index: index + 1 };
+    });
+  };
 
   // When deleting annotations, it shouldn't be out of bounds
   React.useEffect(() => {
@@ -72,15 +71,14 @@ const DocumentViewer = (props: DocumentViewerProps) => {
     }
   }, [annotations, focusedAnnotationIndex]);
 
-  const handleNavigationModeChange = React.useCallback(
-    (newNavigationMode: NavigationModes) => {
-      setNavigationMode(newNavigationMode);
+  const handleNavigationModeChange = React.useCallback((newNavigationMode: NavigationModes) => {
+    setNavigationMode(newNavigationMode);
 
-      if (newNavigationMode === NavigationModes.Annotation) {
-        setFocusingAnnotation(true);
-        setFocusedAnnotationIndex(1);
-      }
-    }, []);
+    if (newNavigationMode === NavigationModes.Annotation) {
+      setFocusingAnnotation(true);
+      setFocusedAnnotationIndex(1);
+    }
+  }, []);
 
   const handleZoomChange = React.useCallback((newZoom: number) => {
     setZoom(newZoom);
@@ -89,11 +87,7 @@ const DocumentViewer = (props: DocumentViewerProps) => {
   const handleNavigationIndexChange = React.useCallback(
     (navigationIndex: number) => {
       if (navigationMode === NavigationModes.Page) {
-        if (
-          navigationIndex < 1 ||
-          navigationIndex > pages.length
-        )
-          return;
+        if (navigationIndex < 1 || navigationIndex > pages.length) return;
 
         pagesEl?.current?.scrollToPage(navigationIndex);
       } else {
@@ -108,12 +102,7 @@ const DocumentViewer = (props: DocumentViewerProps) => {
 
   const handlePageChange = React.useCallback(
     (pageNumber: number) => {
-      if (
-        pageNumber === currentPage ||
-        pageNumber < 1 ||
-        pageNumber > pages.length
-      )
-        return;
+      if (pageNumber === currentPage || pageNumber < 1 || pageNumber > pages.length) return;
 
       setCurrentPage(pageNumber);
     },
@@ -163,14 +152,10 @@ const DocumentViewer = (props: DocumentViewerProps) => {
         navigationMode={navigationMode}
         onNavigationModeChange={handleNavigationModeChange}
         navigationIndex={
-          navigationMode === NavigationModes.Page
-            ? currentPage
-            : focusedAnnotationIndex
+          navigationMode === NavigationModes.Page ? currentPage : focusedAnnotationIndex
         }
         navigationTotal={
-          navigationMode === NavigationModes.Page
-            ? pages.length
-            : annotations.length
+          navigationMode === NavigationModes.Page ? pages.length : annotations.length
         }
         onNavigationIndexChange={handleNavigationIndexChange}
         zoom={zoom}

@@ -34,9 +34,7 @@ const NextButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   );
 };
 
-const PreviousButton = (
-  props: React.ButtonHTMLAttributes<HTMLButtonElement>
-) => {
+const PreviousButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <IconButton {...props}>
       <ArrowBack />
@@ -68,11 +66,4 @@ const DeleteButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   );
 };
 
-export {
-  CloseButton,
-  DeleteButton,
-  DownButton,
-  NextButton,
-  PreviousButton,
-  UpButton
-};
+export { CloseButton, DeleteButton, DownButton, NextButton, PreviousButton, UpButton };

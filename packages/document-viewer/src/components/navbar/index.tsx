@@ -24,17 +24,9 @@ const NavBar = (props: NavBarProps) => {
           title="Previous Document"
         />
 
-        <NextButton
-          className="NavBar__Next"
-          onClick={onNextDocument}
-          title="Next Document"
-        />
+        <NextButton className="NavBar__Next" onClick={onNextDocument} title="Next Document" />
 
-        <CloseButton
-          className="NavBar__Close"
-          onClick={onClose}
-          title="Close Document"
-        />
+        <CloseButton className="NavBar__Close" onClick={onClose} title="Close Document" />
       </div>
     </div>
   );

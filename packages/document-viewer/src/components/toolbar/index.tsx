@@ -34,16 +34,14 @@ export const ToolBar = (props: ToolBarProps) => {
     navigationTotal,
     onNavigationIndexChange,
     zoom,
-    onZoomChange
+    onZoomChange,
   } = props;
 
-  const [inputValue, setInputValue] = React.useState<string>(navigationIndex.toString()); 
+  const [inputValue, setInputValue] = React.useState<string>(navigationIndex.toString());
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleNavigationChange = (
-    event: React.ChangeEvent<any>
-  ) => {
+  const handleNavigationChange = (event: React.ChangeEvent<any>) => {
     onNavigationModeChange(event.target.value as NavigationModes);
   };
 
@@ -66,7 +64,7 @@ export const ToolBar = (props: ToolBarProps) => {
   const confirmInput = React.useMemo(() => {
     return debounce(() => {
       if (!inputRef || !inputRef.current) return;
-  
+
       let value = parseInt(inputRef.current.value);
 
       if (value > 0 && value <= navigationTotal) {
@@ -74,19 +72,19 @@ export const ToolBar = (props: ToolBarProps) => {
       }
     }, 750);
   }, [navigationTotal, onNavigationIndexChange]);
-  
 
-  const handleNavigationItemChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleNavigationItemChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     confirmInput();
   };
 
-  const handleNavigationItemKeyDown = React.useCallback((event: React.KeyboardEvent) => {
-    if (event.key !== "Enter") return;
-    confirmInput.flush();
-  }, [confirmInput]);
+  const handleNavigationItemKeyDown = React.useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event.key !== "Enter") return;
+      confirmInput.flush();
+    },
+    [confirmInput]
+  );
 
   React.useEffect(() => {
     setInputValue(navigationIndex.toString());
@@ -94,16 +92,9 @@ export const ToolBar = (props: ToolBarProps) => {
 
   return (
     <div className="Toolbar">
-      <Select
-        className="Toolbar__Modes"
-        onChange={handleNavigationChange}
-        value={navigationMode}
-      >
+      <Select className="Toolbar__Modes" onChange={handleNavigationChange} value={navigationMode}>
         {Object.keys(NavigationModes).map(key => (
-          <option
-            key={key}
-            value={NavigationModes[key as keyof typeof NavigationModes]}
-          >
+          <option key={key} value={NavigationModes[key as keyof typeof NavigationModes]}>
             {key}
           </option>
         ))}
@@ -129,11 +120,7 @@ export const ToolBar = (props: ToolBarProps) => {
         <DownButton onClick={handleNavigationItemDown} title="Next page" />
       </span>
 
-      <Select
-        className="Toolbar__Zoom"
-        onChange={handleZoomChange}
-        value={zoom}
-      >
+      <Select className="Toolbar__Zoom" onChange={handleZoomChange} value={zoom}>
         {Zooms.map(value => (
           <option key={value} value={value}>
             {value + "%"}

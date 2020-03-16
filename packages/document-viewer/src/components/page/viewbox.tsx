@@ -10,7 +10,7 @@ import {
   MouseSelection,
   PageSelection,
   Selection,
-  Token
+  Token,
 } from "../../types";
 
 import "./style.css";
@@ -110,10 +110,7 @@ function tokensToRectangles(tokens: Token[]) {
       })
       .reduce((boundingBox: BoundingBox, tokenBoundingBox: BoundingBox) => {
         boundingBox.top = Math.min(boundingBox.top, tokenBoundingBox.top);
-        boundingBox.bottom = Math.max(
-          boundingBox.bottom,
-          tokenBoundingBox.bottom
-        );
+        boundingBox.bottom = Math.max(boundingBox.bottom, tokenBoundingBox.bottom);
         boundingBox.left = Math.min(boundingBox.left, tokenBoundingBox.left);
         boundingBox.right = Math.max(boundingBox.right, tokenBoundingBox.right);
         return boundingBox;
@@ -125,10 +122,7 @@ function tokensToRectangles(tokens: Token[]) {
   return rectangles;
 }
 
-function annotationToRectangles(
-  annotation: IndexedAnnotation,
-  tokens: Token[]
-) {
+function annotationToRectangles(annotation: IndexedAnnotation, tokens: Token[]) {
   let annotationTokens = annotationToTokens(annotation, tokens);
 
   return tokensToRectangles(annotationTokens);
@@ -142,43 +136,29 @@ function annotationToRectangles(
 // var annotations = [{characterStart: 1, characterEnd: 20}];
 // console.log(annotationsToRectangles(annotations, tokens));
 
-function annotationsToRectangles(
-  annotations: IndexedAnnotation[],
-  tokens: Token[] | null
-) {
+function annotationsToRectangles(annotations: IndexedAnnotation[], tokens: Token[] | null) {
   if (!tokens) return [];
 
-  return annotations.reduce(
-    (rectangles: Rectangle[], annotation: IndexedAnnotation) => {
-      let annotationRectangles = annotationToRectangles(annotation, tokens).map(
-        (rectangle: BoundingBox) => {
-          return {
-            ...rectangle,
-            annotationTopic: annotation.topic,
-            annotationIndex: annotation._index
-          };
-        }
-      );
-      return rectangles.concat(annotationRectangles);
-    },
-    []
-  );
+  return annotations.reduce((rectangles: Rectangle[], annotation: IndexedAnnotation) => {
+    let annotationRectangles = annotationToRectangles(annotation, tokens).map(
+      (rectangle: BoundingBox) => {
+        return {
+          ...rectangle,
+          annotationTopic: annotation.topic,
+          annotationIndex: annotation._index,
+        };
+      }
+    );
+    return rectangles.concat(annotationRectangles);
+  }, []);
 }
 
-function selectionToRectangles(
-  selection: PageSelection,
-  tokens: Token[] | null
-) {
+function selectionToRectangles(selection: PageSelection, tokens: Token[] | null) {
   if (!selection || !tokens) return [];
 
-  let startIndex =
-    selection.indexStart === Number.NEGATIVE_INFINITY
-      ? 0
-      : selection.indexStart;
+  let startIndex = selection.indexStart === Number.NEGATIVE_INFINITY ? 0 : selection.indexStart;
   let endIndex =
-    selection.indexEnd === Number.POSITIVE_INFINITY
-      ? tokens.length - 1
-      : selection.indexEnd;
+    selection.indexEnd === Number.POSITIVE_INFINITY ? tokens.length - 1 : selection.indexEnd;
   let selectedTokens = tokens.slice(startIndex, endIndex + 1);
   return tokensToRectangles(selectedTokens);
 }
@@ -187,7 +167,7 @@ enum SelectionInPage {
   Start,
   End,
   Both,
-  None
+  None,
 }
 
 function selectionInPage(
@@ -222,7 +202,7 @@ function scaleMousePosition(
   pageImageWrapperEl: HTMLDivElement
 ) {
   let containerEl = pageImageWrapperEl.closest(".Pages");
-  
+
   if (!mousePosition || !containerEl) return [0, 0];
 
   let containerBCR = containerEl.getBoundingClientRect();
@@ -279,34 +259,36 @@ const Viewbox = (props: ViewboxrProps) => {
   const [tokens, setTokens] = React.useState<Token[] | null>(null);
   const [rtree, setRtree] = React.useState<Flatbush | null>(null);
 
-  const annotationRectangles = React.useMemo(
-    () => annotationsToRectangles(annotations, tokens),
-    [annotations, tokens]
-  );
+  const annotationRectangles = React.useMemo(() => annotationsToRectangles(annotations, tokens), [
+    annotations,
+    tokens,
+  ]);
 
-  const selectionRectangles = React.useMemo(
-    () => selectionToRectangles(selection, tokens),
-    [selection, tokens]
-  );
+  const selectionRectangles = React.useMemo(() => selectionToRectangles(selection, tokens), [
+    selection,
+    tokens,
+  ]);
 
   const abortController = React.useMemo(() => {
     return new AbortController();
   }, []);
-  
+
   React.useEffect(() => {
     async function fetchTokens() {
       // The tokens are meant to be immutable, so let's always
       // use the cache if it's there
       try {
-        const res = await fetch(tokensURL, {cache: "force-cache", signal: abortController.signal});
+        const res = await fetch(tokensURL, {
+          cache: "force-cache",
+          signal: abortController.signal,
+        });
         res
           .json()
           .then(res => setTokens(res))
-          .catch(err => console.error('Error fetching the tokens', err));
-      }
-      catch (err) {
-        if (err.name !== 'AbortError') {
-          console.error('Error fetching the tokens', err);
+          .catch(err => console.error("Error fetching the tokens", err));
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          console.error("Error fetching the tokens", err);
         }
       }
     }
@@ -325,12 +307,7 @@ const Viewbox = (props: ViewboxrProps) => {
 
     for (const token of tokens) {
       let boundingBox = token.boundingBox;
-      index.add(
-        boundingBox.left,
-        boundingBox.top,
-        boundingBox.right,
-        boundingBox.bottom
-      );
+      index.add(boundingBox.left, boundingBox.top, boundingBox.right, boundingBox.bottom);
     }
 
     index.finish();
@@ -347,12 +324,7 @@ const Viewbox = (props: ViewboxrProps) => {
     )
       return;
 
-    switch (
-      selectionInPage(
-        mouseSelection,
-        pageImageWrapperRef.current
-      )
-    ) {
+    switch (selectionInPage(mouseSelection, pageImageWrapperRef.current)) {
       case SelectionInPage.Start: {
         let [x1, y1] = scaleMousePosition(
           mouseSelection[0],
@@ -367,9 +339,9 @@ const Viewbox = (props: ViewboxrProps) => {
           Number.POSITIVE_INFINITY
         );
         let firstIndex = Math.min(...intersectingIndices);
-        
+
         if (Number.isInteger(firstIndex)) {
-          onSelectionStart({index: firstIndex, page: pageNumber, token: tokens[firstIndex]});
+          onSelectionStart({ index: firstIndex, page: pageNumber, token: tokens[firstIndex] });
         }
 
         break;
@@ -389,13 +361,17 @@ const Viewbox = (props: ViewboxrProps) => {
         );
         let lastIndex = Math.max(...intersectingIndices);
 
-        // If you started selecting on previous pages and it had no tokens, 
+        // If you started selecting on previous pages and it had no tokens,
         // we'll take the first of this page as the start
         if (!selection && Number.isInteger(lastIndex)) {
-          onSelectionStart({index: 0, page: pageNumber, token: tokens[0]});
+          onSelectionStart({ index: 0, page: pageNumber, token: tokens[0] });
         }
 
-        onSelectionEnd(Number.isInteger(lastIndex) ? { index: lastIndex, page: pageNumber, token: tokens[lastIndex] } : null);
+        onSelectionEnd(
+          Number.isInteger(lastIndex)
+            ? { index: lastIndex, page: pageNumber, token: tokens[lastIndex] }
+            : null
+        );
 
         break;
       }
@@ -412,13 +388,21 @@ const Viewbox = (props: ViewboxrProps) => {
           originalPageWidth,
           pageImageWrapperRef.current
         );
-        
+
         let intersectingIndices = rtree.search(x1, y1, x2, y2);
         let firstIndex = Math.min(...intersectingIndices);
         let lastIndex = Math.max(...intersectingIndices);
-        
-        onSelectionStart(Number.isInteger(firstIndex) ? { index: firstIndex, page: pageNumber, token: tokens[firstIndex] } : null);
-        onSelectionEnd(Number.isInteger(lastIndex) ? { index: lastIndex, page: pageNumber, token: tokens[lastIndex] } : null);
+
+        onSelectionStart(
+          Number.isInteger(firstIndex)
+            ? { index: firstIndex, page: pageNumber, token: tokens[firstIndex] }
+            : null
+        );
+        onSelectionEnd(
+          Number.isInteger(lastIndex)
+            ? { index: lastIndex, page: pageNumber, token: tokens[lastIndex] }
+            : null
+        );
         break;
     }
   }, [
@@ -431,66 +415,54 @@ const Viewbox = (props: ViewboxrProps) => {
     pageImageWrapperRef,
     rtree,
     selection,
-    tokens
+    tokens,
   ]);
 
   return (
     <div className={"Page__Image-Wrapper"} ref={pageImageWrapperRef}>
-          {imageURL && (
-            <img
-              className={"Page__Image"}
-              src={imageURL}
-              alt={"Image of page " + pageNumber}
+      {imageURL && (
+        <img className={"Page__Image"} src={imageURL} alt={"Image of page " + pageNumber} />
+      )}
+
+      {tokens && (
+        <svg
+          className={"Page__Image-Viewbox"}
+          viewBox={"0 0 " + originalPageWidth + " " + originalPageHeight}
+        >
+          {annotationRectangles.map((rectangle: Rectangle, index: number) => (
+            <rect
+              key={index}
+              className={`Annotation-Rectangle${
+                focusingAnnotation && rectangle.annotationIndex === focusedAnnotationIndex
+                  ? " Annotation-Rectangle--focused"
+                  : ""
+              }`}
+              x={rectangle.left - RECTANGLE_PADDING}
+              y={rectangle.top - RECTANGLE_PADDING}
+              onClick={(event: React.MouseEvent) => {
+                event.preventDefault();
+                event.stopPropagation();
+                onAnnotationFocus(rectangle.annotationIndex);
+              }}
+              width={rectangle.right - rectangle.left + 2 * RECTANGLE_PADDING}
+              height={rectangle.bottom - rectangle.top + 2 * RECTANGLE_PADDING}
+              style={{ fill: topicToColor(rectangle.annotationTopic) }}
             />
-          )}
+          ))}
 
-          {tokens && (
-            <svg
-              className={"Page__Image-Viewbox"}
-              viewBox={"0 0 " + originalPageWidth + " " + originalPageHeight}>
-              {annotationRectangles.map(
-                (rectangle: Rectangle, index: number) => (
-                  <rect
-                    key={index}
-                    className={`Annotation-Rectangle${
-                      focusingAnnotation &&
-                      rectangle.annotationIndex === focusedAnnotationIndex
-                        ? " Annotation-Rectangle--focused"
-                        : ""
-                    }`}
-                    x={rectangle.left - RECTANGLE_PADDING}
-                    y={rectangle.top - RECTANGLE_PADDING}
-                    onClick={(event: React.MouseEvent) => {
-                      event.preventDefault();
-                      event.stopPropagation();
-                      onAnnotationFocus(rectangle.annotationIndex);
-                    }}
-                    width={ rectangle.right - rectangle.left + 2 * RECTANGLE_PADDING }
-                    height={ rectangle.bottom - rectangle.top + 2 * RECTANGLE_PADDING }
-                    style={{ fill: topicToColor(rectangle.annotationTopic) }}
-                  />
-                )
-              )}
-
-              {selectionRectangles.map(
-                (rectangle: BoundingBox, index: number) => (
-                  <rect
-                    key={index}
-                    className="Selection-Rectangle"
-                    x={rectangle.left - RECTANGLE_PADDING}
-                    y={rectangle.top - RECTANGLE_PADDING}
-                    width={
-                      rectangle.right - rectangle.left + 2 * RECTANGLE_PADDING
-                    }
-                    height={
-                      rectangle.bottom - rectangle.top + 2 * RECTANGLE_PADDING
-                    }
-                  />
-                )
-              )}
-            </svg>
-          )}
-        </div>
+          {selectionRectangles.map((rectangle: BoundingBox, index: number) => (
+            <rect
+              key={index}
+              className="Selection-Rectangle"
+              x={rectangle.left - RECTANGLE_PADDING}
+              y={rectangle.top - RECTANGLE_PADDING}
+              width={rectangle.right - rectangle.left + 2 * RECTANGLE_PADDING}
+              height={rectangle.bottom - rectangle.top + 2 * RECTANGLE_PADDING}
+            />
+          ))}
+        </svg>
+      )}
+    </div>
   );
 };
 

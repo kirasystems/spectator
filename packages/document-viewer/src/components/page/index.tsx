@@ -1,15 +1,14 @@
 import React from "react";
 
-import {
-  IndexedAnnotation,
-  MouseSelection,
-  PageSelection,
-  Selection
-} from "../../types";
+import { IndexedAnnotation, MouseSelection, PageSelection, Selection } from "../../types";
 
 import Viewbox from "./viewbox";
 
-import { AnnotationLabels, ANNOTATION_LABELS_WIDTH, ANNOTATION_LABELS_MARGIN_LEFT } from "../annotationlabels/index";
+import {
+  AnnotationLabels,
+  ANNOTATION_LABELS_WIDTH,
+  ANNOTATION_LABELS_MARGIN_LEFT,
+} from "../annotationlabels/index";
 
 import "./style.css";
 import EmptyPage from "./empty";
@@ -52,7 +51,7 @@ const Page = (props: PageProps) => {
     mouseSelection,
     selection,
     tokensURL,
-    zoom
+    zoom,
   } = props;
 
   const [pageWrapperHeight, setPageWrapperHeight] = React.useState(0);
@@ -65,10 +64,11 @@ const Page = (props: PageProps) => {
 
     let boundingBox = pageRef.current.getBoundingClientRect();
     let pageImageWrapperWidth =
-      (boundingBox.width - (ANNOTATION_LABELS_WIDTH + ANNOTATION_LABELS_MARGIN_LEFT)) * (zoom / 100);
-    let pageWrapperHeight =
-      pageImageWrapperWidth * (originalPageHeight / originalPageWidth);
-    let pageWrapperWidth = pageImageWrapperWidth + (ANNOTATION_LABELS_WIDTH + ANNOTATION_LABELS_MARGIN_LEFT);
+      (boundingBox.width - (ANNOTATION_LABELS_WIDTH + ANNOTATION_LABELS_MARGIN_LEFT)) *
+      (zoom / 100);
+    let pageWrapperHeight = pageImageWrapperWidth * (originalPageHeight / originalPageWidth);
+    let pageWrapperWidth =
+      pageImageWrapperWidth + (ANNOTATION_LABELS_WIDTH + ANNOTATION_LABELS_MARGIN_LEFT);
 
     setPageWrapperHeight(pageWrapperHeight);
     setPageWrapperWidth(pageWrapperWidth);
@@ -78,7 +78,7 @@ const Page = (props: PageProps) => {
     if (!pageRef || !pageRef.current) return;
 
     setPageDimensions();
-    
+
     window.addEventListener("resize", setPageDimensions);
     return () => window.removeEventListener("resize", setPageDimensions);
   }, [setPageDimensions]);
@@ -97,10 +97,11 @@ const Page = (props: PageProps) => {
         className={"Page__Wrapper"}
         style={{
           width: pageWrapperWidth + "px",
-          height: pageWrapperHeight + "px"
-        }}>
-        {load ? 
-          <Viewbox 
+          height: pageWrapperHeight + "px",
+        }}
+      >
+        {load ? (
+          <Viewbox
             annotations={annotations}
             focusedAnnotationIndex={focusedAnnotationIndex}
             focusingAnnotation={focusingAnnotation}
@@ -115,8 +116,9 @@ const Page = (props: PageProps) => {
             selection={selection}
             tokensURL={tokensURL}
           />
-          :
-          <EmptyPage />}
+        ) : (
+          <EmptyPage />
+        )}
 
         <AnnotationLabels
           annotations={annotations}
