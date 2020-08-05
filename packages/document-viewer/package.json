@@ -11,8 +11,8 @@
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "postinstall": "tsdx build"
+    "prepare": "tsc --outDir ./build",
+    "postinstall": "tsc --outDir ./build"
   },
   "peerDependencies": {
     "react": ">=16"
