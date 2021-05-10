@@ -1,8 +1,9 @@
 {
+  "name": "document-viewer",
+  "author": "kirasystems",
   "version": "0.1.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "style": "dist/style.css",
   "files": [
     "dist"
   ],
@@ -14,39 +15,40 @@
     "prepare": "tsdx build"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "@material-ui/core": "^4.0.0"
+    "@material-ui/core": ">=4",
+    "react": ">=16",
+    "react-dom": ">=16"
   },
   "prettier": {
     "printWidth": 100,
     "semi": true,
     "trailingComma": "es5"
   },
-  "name": "document-viewer",
-  "author": "kirasystems",
-  "module": "dist/document-viewer.esm.js",
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
     "flatbush": "^3.3.0",
     "lodash.debounce": "^4.0.8",
-    "lodash.isequal": "^4.5.0"
+    "lodash.isequal": "^4.5.0",
+    "lodash.isfunction": "^3.0.9"
   },
   "devDependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@types/flatbush": "^3.3.0",
     "@types/jest": "^26.0.23",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.isequal": "^4.5.5",
+    "@types/lodash.isfunction": "^3.0.6",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
     "autoprefixer": "^10.2.5",
     "cssnano": "^5.0.2",
     "husky": "^6.0.0",
-    "@material-ui/core": "^4.11.4",
     "postcss": "^8.2.14",
     "postcss-cli": "^8.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "resize-observer-polyfill": "^1.5.1",
     "rollup-plugin-postcss": "^4.0.0",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",

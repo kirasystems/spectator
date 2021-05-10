@@ -142,7 +142,7 @@ func GetAnnotationsHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	documentID, _ := strconv.Atoi(params["documentId"])
 
-	rows, err := db.Query(`SELECT a.annotation_id, a.character_start, a.character_end, a.page_start, a.page_end, a.top_px, a.left_px, t.topic_id, t.topic
+	rows, err := db.Query(`SELECT a.annotation_id, a.character_start, a.character_end, a.page_start, a.page_end, a.top_px, a.left_px, t.topic_id, t.topic, a.text
 									       FROM annotations a
 									       INNER JOIN topics t ON t.topic_id = a.topic_id
 									       WHERE a.document_id = ?
@@ -159,7 +159,7 @@ func GetAnnotationsHandler(w http.ResponseWriter, r *http.Request) {
 		var annotation Annotation
 
 		err = rows.Scan(&annotation.AnnotationID, &annotation.CharacterStart, &annotation.CharacterEnd, &annotation.PageStart,
-			&annotation.PageEnd, &annotation.Top, &annotation.Left, &annotation.TopicID, &annotation.Topic)
+			&annotation.PageEnd, &annotation.Top, &annotation.Left, &annotation.TopicID, &annotation.Topic, &annotation.Text)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return

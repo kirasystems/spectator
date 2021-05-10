@@ -11,6 +11,7 @@ type Annotation struct {
 	Left           uint   `json:"left"`
 	TopicID        uint   `json:"topicId"`
 	Topic          string `json:"topic"`
+	Text           string `json:"text"`
 }
 
 // Page struct holds the minimal set of data we need to describe a page in a document

@@ -1,7 +1,9 @@
 import "react-app-polyfill/ie11";
 import React from "react";
 import ReactDOM from "react-dom";
-import DocumentViewer from "../src/index";
+import { Box } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import DocumentViewer, { SummaryProps } from "../src/index";
 
 import { Server } from "miragejs";
 
@@ -69,10 +71,21 @@ new Server({
   },
 });
 
+type ViewerSummaryProps = {};
+
+const Summary = React.forwardRef(
+  (props: SummaryProps & ViewerSummaryProps, ref: React.Ref<unknown>): JSX.Element => {
+    const { onZoomChange, viewerRef } = props;
+
+    return <Box height={"100%"}>Summary Panel</Box>;
+  }
+);
+
 const App: React.FC = () => {
   return (
-    <div className="App" style={{ height: "100%", width: "100%", margin: "0" }}>
+    <Box height={"100%"} width={"100%"} margin={"0"}>
       <DocumentViewer
+        id={"1"}
         annotations={annotations}
         name={documentData.name}
         lazyLoadingWindow={5}
@@ -83,9 +96,31 @@ const App: React.FC = () => {
         onPreviousDocument={() => console.log("Previous")}
         pages={documentData.pages}
         topics={topics}
+        Summary={Summary}
       />
-    </div>
+    </Box>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#325A66",
+      main: "#01313C",
+    },
+  },
+  typography: {
+    h3: {
+      fontSize: "1.2rem",
+    },
+  },
+});
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);

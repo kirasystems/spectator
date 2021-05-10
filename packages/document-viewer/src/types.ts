@@ -37,9 +37,23 @@ export type Selection = {
 
 export type PageSelection = { indexStart: number; indexEnd: number } | null;
 
+export type ImageURL = string | (() => Promise<string>);
+export type TokensURL = string | (() => Promise<Token[]>);
+
 export type Page = {
   originalHeight: number;
   originalWidth: number;
-  imageURL: string;
-  tokensURL: string;
+  imageURL: ImageURL;
+  tokensURL: TokensURL;
+};
+
+export type Topic = string;
+
+export type SearchResult = {
+  characterStart: number;
+  characterEnd: number;
+  pageStart: number;
+  pageEnd: number;
+  top: number;
+  left: number;
 };

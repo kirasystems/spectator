@@ -4,11 +4,11 @@ The document viewer is a React component built in Typescript that allows a user 
 
 ## Getting started
 
-You will need [node](https://nodejs.org/en/download/package-manager/) and [yarn](https://yarnpkg.com/getting-started/install). 
+You will need [node](https://nodejs.org/en/download/package-manager/) and [yarn](https://yarnpkg.com/getting-started/install).
 
 `yarn install` to install the document viewer's dependencies.
 
-There's a playground that enables faster local development with a very simple test document (see `playground` folder). 
+There's a playground that enables faster local development with a very simple test document (see `playground` folder).
 It uses (MirageJS)[https://miragejs.com/] to mock the server API.
 
 1. `yarn install` in the `playground` directory.
@@ -44,7 +44,7 @@ A quick example of how to use it would be:
     pages={[{
       originalHeight: 842,
       originalWidth: 595,
-      imageURL: "api/document/1/page/1/image", 
+      imageURL: "api/document/1/page/1/image",
       tokensURL: "api/document/1/page/1/tokens"
     }]}
     topics={["1", "2", "3"]}
@@ -52,11 +52,18 @@ A quick example of how to use it would be:
 </div>
 ```
 
+### Material UI
+
+The new version of the Document Viewer uses Material UI. It allows [theming](https://material-ui.com/customization/theming/) of the document viewer.
+Prefer refer to `packages/server/web` for an example of how to use it in your app.
+
+Note: Bundling multiple versions of Material UI can have [interesting consequences](https://material-ui.com/getting-started/faq/#why-arent-my-components-rendering-correctly-in-production-builds). To prevent these issues, it's been added a peer dependency. Moreover, it's also possible to pass in the classname generator of your app to prevent clashing of classnames using the `muiClassGenerator` property.
+
 ### Concepts
 
 As a document viewer is somewhat of a complex user interface to build, it requires some concepts to be understood:
 
-- `annotations`: They are the highlights in the text. An `annotation` is mainly defined by the [`characterStart` `characterEnd`[ pair and should, as much as possible, correspond with the start and the end of a word. If the annotation doesn't wrap nicely, the document viewer will do its best to try to map it to the closest words. 
+- `annotations`: They are the highlights in the text. An `annotation` is mainly defined by the [`characterStart` `characterEnd`[ pair and should, as much as possible, correspond with the start and the end of a word. If the annotation doesn't wrap nicely, the document viewer will do its best to try to map it to the closest words.
   - `characterStart`: The 0-based index of the first character of the highlight.
   - `characterEnd`: The 0-based index of the last character of the highlight.
   - `pageStart`: The 1-based index of the page containing `characterStart`.
@@ -64,7 +71,8 @@ As a document viewer is somewhat of a complex user interface to build, it requir
   - `top` and `left` corresponds to the `top` and `left` position, in pixels, of the first character of the annotation in the original document. It is used to be able to jump directly to annotations.
   - `topic`: The string representation of the topic.
 - `name`: The name of the document.
-- `lazyLoadingWindow` (optinal): As the document viewer is taking care of lazy loading the pages, it defines how many pages on both sides needs to be loaded. A value of 1 will mean to load 3 pages (-1, current, +1).
+- `lazyLoadingWindow` (optional): As the document viewer is taking care of lazy loading the pages, it defines how many pages on both sides needs to be loaded. A value of 1 will mean to load 3 pages (-1, current, +1).
+- `muiClassGenerator` (optional): The class generate to be used to prevent classname clashing.
 - `onAnnotationCreate`: A callback used when a user highlights text and then click on a topic.
 - `onAnnotationDelete`: A callback used when a user clicks on the `X` of an annotation.
 - `onClose`: A callback used when a user clicks on the `X` of the document viewer.
@@ -73,8 +81,8 @@ As a document viewer is somewhat of a complex user interface to build, it requir
 - `pages`: The definition of all pages. The page are lazy loaded which is why it requires some URLs in its definition.
   - `originalHeight`: The height, in pixels, of the original document. It is used to be able to create a translate the position of the mouse to something we can use the R-tree with.
   - `originalWidth`: The width, in pixels, of the original document. It is used to be able to create a translate the position of the mouse to something we can use the R-tree with.
-  - `imageURL`: The URL to the image of the page. The PNG format is recommended as it performs well for our scenario.
-  - `tokensURL`: The URL to the tokens of the page. As there's normally a lot of tokens inA token is defined by:
+  - `imageURL`: The URL to the image of the page. The PNG format is recommended as it performs well for our scenario. It's also possible to provide a callback.
+  - `tokensURL`: The URL to the tokens of the page. It's also possible to provide a callback. A token is defined by:
     - `line`: The 0-based index of the line containing the token. The line is supposed to reset to 0 when it's a new page.
     - `characterStart`: The 0-based index of the first character of the token.
     - `characterEnd`: The 0-based index of the last character of the token.
@@ -84,6 +92,9 @@ As a document viewer is somewhat of a complex user interface to build, it requir
       - `left`: Position in pixels of `left` in the original document.
       - `right`: Position in pixels of `right` in the original document.
 - `topics`: An order list of topics (strings) to choose from.
+- `searchResults`: A list of passages to be highlighted. They are conceptually similar to `annotations`, but will have a different colour.
+- `Summary`: A component that will be rendered on the left side of the pages. It's meant to be use to display extra information about the document i.e. a list of all the annotations. It takes, at a miniumum, the props defined in the `SummaryProps` type (including a ref to the `PagesHandle` to allow scrolling to specific elements) and everything passed in `summaryProps`.
+- `summaryProps`: The "user-defined" props that will be pass to the `Summary` component.
 
 ### Design
 
@@ -95,7 +106,6 @@ To have a maximal number of distinct colours (12 colours), we used a [generator]
 
 ## Features that are left out (for now)
 
- - Search within and between documents.
- - Copying text.
- - Nuanced behaviour tracking.
- - Mobile/Tablet support.
+- Copying text.
+- Nuanced behaviour tracking.
+- Mobile/Tablet support.

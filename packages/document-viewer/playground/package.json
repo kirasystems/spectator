@@ -2,7 +2,6 @@
   "name": "playground",
   "private": true,
   "version": "0.0.0",
-  "main": "index.js",
   "scripts": {
     "start": "parcel --no-cache index.html",
     "build": "parcel build index.html"
@@ -13,7 +12,8 @@
   "alias": {
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",
-    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
+    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling",
+    "@material-ui": "../node_modules/@material-ui"
   },
   "devDependencies": {
     "@parcel/transformer-image": "2.0.0-nightly.2277",
