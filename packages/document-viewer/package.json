@@ -1,5 +1,5 @@
 {
-  "name": "document-viewer",
+  "name": "@kirasystems/document-viewer",
   "author": "kirasystems",
   "version": "0.1.0",
   "main": "dist/index.js",
