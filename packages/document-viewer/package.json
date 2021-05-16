@@ -1,7 +1,7 @@
 {
   "name": "@kirasystems/document-viewer",
   "author": "kirasystems",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "flatbush": "^3.3.0",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
@@ -33,7 +34,6 @@
   },
   "devDependencies": {
     "@material-ui/core": "^4.11.4",
-    "@material-ui/lab": "^4.0.0-alpha.58",
     "@types/flatbush": "^3.3.0",
     "@types/jest": "^26.0.23",
     "@types/lodash.debounce": "^4.0.6",

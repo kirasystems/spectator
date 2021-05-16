@@ -1457,12 +1457,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@kirasystems/document-viewer@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@kirasystems/document-viewer/-/document-viewer-0.1.0.tgz#c898fadaeb667507a1e5fa08e890e882127a13fd"
-  integrity sha512-kYEbzgjCncfUgJC6jL/7FJQNRNmk3zADx1HBVeam5ho9mIhZ09wR0tr1R4LVOKNd7b3ZlWFjBRjxPoZmkbgipA==
+"@kirasystems/document-viewer@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@kirasystems/document-viewer/-/document-viewer-0.1.1.tgz#f82140ade23ad9611104072e015966f56479228c"
+  integrity sha512-kCc61X9TMnzDIhunffmsRgeMjgX8AvScdmTIDbhiD0eFfPawihD3OHSm3tXoMYzPU468iTYtKnE8yBnQiQq0jQ==
   dependencies:
     "@material-ui/icons" "^4.11.2"
+    "@material-ui/lab" "^4.0.0-alpha.58"
     flatbush "^3.3.0"
     lodash.debounce "^4.0.8"
     lodash.isequal "^4.5.0"
