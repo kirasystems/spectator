@@ -1,4 +1,4 @@
-import { Annotation as dvAnnotation } from "document-viewer";
+import { Annotation as dvAnnotation } from "@kirasystems/document-viewer";
 
 export type Annotation = dvAnnotation & { text: string };
 

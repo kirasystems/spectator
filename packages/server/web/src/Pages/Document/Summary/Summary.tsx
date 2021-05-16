@@ -27,7 +27,7 @@ import {
 import Info from "./Info";
 import Annotations from "./Annotations";
 
-import { SummaryProps } from "document-viewer";
+import { SummaryProps } from "@kirasystems/document-viewer";
 import { Annotation } from "../../../types";
 
 const SIDEBAR_CLOSED_WIDTH = 56;

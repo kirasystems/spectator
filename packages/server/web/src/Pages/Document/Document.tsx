@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 
 import classGenerator from "../../classGenerator";
 
-import DocumentViewer from "document-viewer";
+import DocumentViewer from "@kirasystems/document-viewer";
 import Summary from "./Summary/Summary";
 
 import { Document as DocumentType, Topic, Annotation } from "../../types";

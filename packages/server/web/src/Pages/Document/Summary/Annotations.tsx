@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 
 import { Annotation } from "../../../types";
-import { ViewerRef } from "document-viewer";
+import { ViewerRef } from "@kirasystems/document-viewer";
 
 const useStyles = makeStyles((theme) => ({
   title: {
