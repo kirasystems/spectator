@@ -191,7 +191,7 @@ const DocumentViewer = (props: DocumentViewerProps, ref: React.Ref<JSX.Element>)
 
   const indexAnnotations = (annotations: Annotation[]): IndexedAnnotation[] => {
     return sortAnnotations(annotations).map((annotation: Annotation, index: number) => {
-      return { ...annotation, _index: index + 1 };
+      return { ...annotation, _index: index };
     });
   };
 
@@ -226,13 +226,7 @@ const DocumentViewer = (props: DocumentViewerProps, ref: React.Ref<JSX.Element>)
 
   const handleFocusedAnnotationChange = React.useCallback(
     (annotationIndex: number) => {
-      if (
-        focusedAnnotationIndex === annotationIndex ||
-        annotationIndex < 1 ||
-        annotationIndex > annotations.length
-      )
-        return;
-
+      if (annotationIndex < 0 || annotationIndex >= annotations.length) return;
       setFocusedAnnotationIndex(annotationIndex);
     },
     [annotations, focusedAnnotationIndex]

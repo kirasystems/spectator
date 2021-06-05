@@ -161,6 +161,8 @@ type PagesProps = {
 };
 
 export interface PagesHandle {
+  focusAnnotation(annotationIndex: number): void;
+
   scrollToPage(pageNumber: number): void;
   scrollToLocation(pageNumber: number, left: number, top: number): void;
   scrollToAnnotation(annotationIndex: number): void;
@@ -370,6 +372,11 @@ const Pages: React.ForwardRefRenderFunction<PagesHandle, PagesProps> = (
   React.useImperativeHandle(
     ref,
     (): PagesHandle => ({
+      focusAnnotation(annotationIndex: number): void {
+        onFocusingAnnotationChange(true);
+        onFocusedAnnotationIndexChange(annotationIndex);
+      },
+
       scrollToPage(pageNumber: number): void {
         if (!pagesContainerEl.current || !pagesEl.current || currentPage === pageNumber) return;
 
