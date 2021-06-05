@@ -35,6 +35,7 @@ const useStyles = makeStyles({
   image: {
     height: "100%",
     width: "100%",
+    userSelect: "none",
   },
   svg: {
     position: "absolute",
