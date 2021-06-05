@@ -1,7 +1,6 @@
 import React from "react";
-import clsx from "clsx";
 import { isEqual } from "lodash";
-import { List } from "@material-ui/core";
+import { Box, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Picker from "./Picker";
 import Page, { EmptyPage } from "./Page";
@@ -126,7 +125,7 @@ const selectionPerPage = (
 
 const pageInView = (container: HTMLElement): number => {
   let pageNumber = 0;
-  const children = container.children;
+  const children = container.children[0].children;
 
   const containerBCR = container.getBoundingClientRect();
   const containerMiddle = containerBCR.top + containerBCR.height / 2;
@@ -203,6 +202,7 @@ const Pages: React.ForwardRefRenderFunction<PagesHandle, PagesProps> = (
   const [scrolling, setScrolling] = React.useState(false);
   const [scrollPosition, setScrollPosition] = React.useState<ScrollPosition>([0, 0]);
 
+  const pagesContainerEl = React.useRef<HTMLDivElement>(null);
   const pagesEl = React.useRef<HTMLOListElement>(null);
 
   const pageAnnotations = React.useMemo(() => annotationsPerPage(annotations), [annotations]);
@@ -225,16 +225,11 @@ const Pages: React.ForwardRefRenderFunction<PagesHandle, PagesProps> = (
   }, [mouseStart, mouseEnd]);
 
   const mousePosition = (event: MouseEvent | React.MouseEvent): MousePosition => {
-    if (pagesEl && pagesEl.current) {
-      const pagesBCR = pagesEl.current.getBoundingClientRect();
+    if (!pagesEl.current) return [0, 0];
 
-      return [
-        event.clientX - pagesBCR.left + pagesEl.current.scrollLeft,
-        event.clientY - pagesBCR.top + pagesEl.current.scrollTop,
-      ];
-    }
+    const pagesBCR = pagesEl.current.getBoundingClientRect();
 
-    return [0, 0];
+    return [event.clientX - pagesBCR.left, event.clientY - pagesBCR.top];
   };
 
   // When new document, reinitialzes selection variables
@@ -322,12 +317,12 @@ const Pages: React.ForwardRefRenderFunction<PagesHandle, PagesProps> = (
   );
 
   const handleScroll = React.useCallback(() => {
-    if (!pagesEl || !pagesEl.current) return;
+    if (!pagesContainerEl.current) return;
 
-    onPageChange(pageInView(pagesEl.current));
+    onPageChange(pageInView(pagesContainerEl.current));
 
-    const newScrollLeft = pagesEl.current.scrollLeft;
-    const newScrollTop = pagesEl.current.scrollTop;
+    const newScrollLeft = pagesContainerEl.current.scrollLeft;
+    const newScrollTop = pagesContainerEl.current.scrollTop;
 
     // If user is selecting and scrolling, it won't send a new MouseMove event
     // so we need to adjust the MousePosition based on the delta of the scroll
@@ -376,40 +371,41 @@ const Pages: React.ForwardRefRenderFunction<PagesHandle, PagesProps> = (
     ref,
     (): PagesHandle => ({
       scrollToPage(pageNumber: number): void {
-        if (!pagesEl.current || currentPage === pageNumber) return;
+        if (!pagesContainerEl.current || !pagesEl.current || currentPage === pageNumber) return;
 
         const pageEl = pagesEl.current.children[pageNumber - 1];
-        const pagesBCR = pagesEl.current.getBoundingClientRect();
+        const pagesContainerBCR = pagesContainerEl.current.getBoundingClientRect();
         const pageBCR = pageEl.getBoundingClientRect();
 
         setScrolling(true);
         smoothScroll(
-          pagesEl.current,
-          { endY: pageBCR.top - pagesBCR.top + pagesEl.current.scrollTop },
+          pagesContainerEl.current,
+          {
+            endY: pageBCR.top - pagesContainerBCR.top + pagesContainerEl.current.scrollTop,
+          },
           200,
           () => setScrolling(false)
         );
       },
 
       scrollToLocation(pageNumber: number, originalLeft: number, originalTop: number): void {
-        if (!pagesEl.current) return;
+        if (!pagesContainerEl.current || !pagesEl.current) return;
 
         const page = pages[pageNumber - 1];
 
         const pageEl = pagesEl.current.children[pageNumber - 1];
-        const pagesBCR = pagesEl.current.getBoundingClientRect();
+        const pagesContainerBCR = pagesContainerEl.current.getBoundingClientRect();
         const pageBCR = pageEl.getBoundingClientRect();
 
-        const pageX = pageBCR.left - pagesBCR.left + pagesEl.current.scrollLeft;
-        const pageY = pageBCR.top - pagesBCR.top + pagesEl.current.scrollTop;
+        const pageX = pageBCR.left - pagesContainerBCR.left + pagesContainerEl.current.scrollLeft;
+        const pageY = pageBCR.top - pagesContainerBCR.top + pagesContainerEl.current.scrollTop;
 
         const locationX = originalLeft * (pageBCR.width / page.originalWidth);
         const locationY = originalTop * (pageBCR.height / page.originalHeight);
 
         setScrolling(true);
-        console.log("Annotation2", { endX: pageX + locationX - 20, endY: pageY + locationY - 20 });
         smoothScroll(
-          pagesEl.current,
+          pagesContainerEl.current,
           { endX: pageX + locationX - 20, endY: pageY + locationY - 20 },
           200,
           () => setScrolling(false)
@@ -417,11 +413,7 @@ const Pages: React.ForwardRefRenderFunction<PagesHandle, PagesProps> = (
       },
 
       scrollToAnnotation(annotationIndex: number): void {
-        console.log("Annotation", annotationIndex);
-        if (!pagesEl.current) return;
-        console.log("Annotation2");
         const annotation = annotations[annotationIndex];
-        console.log("Annotation2", annotation);
         this.scrollToLocation(annotation.pageStart, annotation.left, annotation.top);
       },
     }),
@@ -429,56 +421,52 @@ const Pages: React.ForwardRefRenderFunction<PagesHandle, PagesProps> = (
   );
 
   return (
-    <List
-      ref={pagesEl}
-      className={clsx("Pages", classes.root)}
-      onMouseDown={handleMouseDown}
-      onClick={handleClick}
-      onScroll={handleScroll}
-    >
-      {loading ? (
-        <EmptyPage
-          containerHeight={pagesHeight}
-          containerWidth={pagesWidth}
-          originalPageHeight={11}
-          originalPageWidth={8.5}
-          zoom={zoom}
-        />
-      ) : (
-        pages.map((page: PageType, index: number) => (
-          <Page
-            key={index}
-            annotations={pageAnnotations.get(index + 1) ?? []}
+    <Box ref={pagesContainerEl} className={classes.root} onScroll={handleScroll}>
+      <List ref={pagesEl} className={"Pages"} onMouseDown={handleMouseDown} onClick={handleClick}>
+        {loading ? (
+          <EmptyPage
             containerHeight={pagesHeight}
             containerWidth={pagesWidth}
-            focusedAnnotationIndex={focusedAnnotationIndex}
-            focusingAnnotation={focusingAnnotation}
-            imageURL={page.imageURL}
-            load={
-              !scrolling &&
-              index + 1 >= currentPage - lazyLoadingWindow &&
-              index + 1 <= currentPage + lazyLoadingWindow
-            }
-            onAnnotationDelete={onAnnotationDelete}
-            onFocusedAnnotationIndexChange={onFocusedAnnotationIndexChange}
-            onFocusingAnnotationChange={onFocusingAnnotationChange}
-            onSelectionStart={handleSelectionStart}
-            onSelectionEnd={handleSelectionEnd}
-            originalPageHeight={page.originalHeight}
-            originalPageWidth={page.originalWidth}
-            pageNumber={index + 1}
-            mouseSelection={mouseSelection}
-            searchResults={pageSearchResults.get(index + 1) ?? []}
-            selection={pageSelection.get(index + 1) || null}
-            tokensURL={page.tokensURL}
+            originalPageHeight={11}
+            originalPageWidth={8.5}
             zoom={zoom}
           />
-        ))
-      )}
-      {onAnnotationCreate && selectionStart && selectionEnd && (
-        <Picker topics={topics} onAnnotation={handleAnnotation} />
-      )}
-    </List>
+        ) : (
+          pages.map((page: PageType, index: number) => (
+            <Page
+              key={index}
+              annotations={pageAnnotations.get(index + 1) ?? []}
+              containerHeight={pagesHeight}
+              containerWidth={pagesWidth}
+              focusedAnnotationIndex={focusedAnnotationIndex}
+              focusingAnnotation={focusingAnnotation}
+              imageURL={page.imageURL}
+              load={
+                !scrolling &&
+                index + 1 >= currentPage - lazyLoadingWindow &&
+                index + 1 <= currentPage + lazyLoadingWindow
+              }
+              onAnnotationDelete={onAnnotationDelete}
+              onFocusedAnnotationIndexChange={onFocusedAnnotationIndexChange}
+              onFocusingAnnotationChange={onFocusingAnnotationChange}
+              onSelectionStart={handleSelectionStart}
+              onSelectionEnd={handleSelectionEnd}
+              originalPageHeight={page.originalHeight}
+              originalPageWidth={page.originalWidth}
+              pageNumber={index + 1}
+              mouseSelection={mouseSelection}
+              searchResults={pageSearchResults.get(index + 1) ?? []}
+              selection={pageSelection.get(index + 1) || null}
+              tokensURL={page.tokensURL}
+              zoom={zoom}
+            />
+          ))
+        )}
+        {onAnnotationCreate && selectionStart && selectionEnd && (
+          <Picker topics={topics} onAnnotation={handleAnnotation} />
+        )}
+      </List>
+    </Box>
   );
 };
 
