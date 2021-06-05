@@ -1,4 +1,13 @@
 import DocumentViewer from "./Viewer";
-export { Annotation, SearchResult, Topic } from "./types";
+export {
+  Annotation,
+  BoundingBox,
+  ImageURL,
+  Page,
+  SearchResult,
+  Token,
+  TokensURL,
+  Topic,
+} from "./types";
 export { SummaryProps, ViewerRef } from "./Viewer";
 export default DocumentViewer;
