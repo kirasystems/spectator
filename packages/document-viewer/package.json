@@ -1,7 +1,7 @@
 {
   "name": "@kirasystems/document-viewer",
   "author": "kirasystems",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
